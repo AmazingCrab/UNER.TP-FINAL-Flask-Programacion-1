@@ -2,20 +2,57 @@
 <html>
 <body>
 <header>
-    <h1>{{lista_menu[5]}}</h1>
-    <h2>{{lista_menu[6]}}</h2>
+    <h1>{{lista_menu[4]}}</h1>
+    <h2>{{lista_menu[5]}}</h2>
 </header>
-<main>
+<main>  
+    <h3>{{lista_menu[0]}}</h3>
     
-    <ul><h3>{{lista_menu[3]}}</h3>
-        <li>{{lista_menu[0]}}</li>
-        <li>{{lista_menu[1]}}</li>
-        <li>{{lista_menu[2]}}</li>
-    </ul>
+    <h4>{{lista_menu[1]}}</h4>
+    <!--Blue-->
+    <table style="border: 1px solid black;border-collapse: collapse;">
+        <thead>
+            <tr>
+                {% for header in headers %}
+                    <th>{{ header }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody style="border: 1px solid black;border-collapse: collapse;" >
+            {% for field in fields1 %}
+                <tr>
+                    {% for value in field %}
+                        <td>{{ value }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <h4>{{lista_menu[2]}}</h4>
+    <!--oficial-->
+    <table style="border: 1px solid black;border-collapse: collapse;">
+        <thead>
+            <tr>
+                {% for header in headers %}
+                    <th>{{ header }}</th>
+                {% endfor %}
+            </tr>
+        </thead>
+        <tbody style="border: 1px solid black;border-collapse: collapse;">
+            {% for field in fields2 %}
+                <tr>
+                    {% for value in field %}
+                        <td>{{ value }}</td>
+                    {% endfor %}
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
 
-    <form method="post" action="request">
-        <button type="submit">{{lista_menu[4]}}</button>  
-        <input name ="opcion" type="text" value="" placeholder="Elija una opción">
+
+
+    <form action="http://127.0.0.1:5000" method="post" action="request">
+        <button type="submit">{{lista_menu[3]}}</button>  
     </form>
 
 </main>

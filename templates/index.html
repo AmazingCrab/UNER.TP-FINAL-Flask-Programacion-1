@@ -6,22 +6,22 @@
     <h2>{{lista_menu[8]}}</h2>
 </header>
 <main>
-    
-    <ul><h3>{{lista_menu[5]}}</h3>
-        <li>{{lista_menu[0]}}</li>
-        <li>{{lista_menu[1]}}</li>
-        <li>{{lista_menu[2]}}</li>
-        <li>{{lista_menu[3]}}</li>
-        <li>{{lista_menu[4]}}</li>
-        
-    </ul>
-    
-    <form method="post" action="request">
-        <button type="submit">{{lista_menu[6]}}</button>  
-        <input name ="opcion" type="text" value="" placeholder="Elija una opción">
-    </form>
-
-</main>
+    <h3>{{lista_menu[5]}}</h3>
+    <nav>
+        <form action="http://127.0.0.1:5000/vehiculos" method="post" action="request">
+            <button type="submit">{{lista_menu[0]}}</button>
+        </form>  
+        <form action="http://127.0.0.1:5000/clientes" method="post" action="request">
+            <button type="submit">{{lista_menu[1]}}</button>  
+        </form>
+        <form action="http://127.0.0.1:5000/transacciones" method="post" action="request">
+            <button type="submit">{{lista_menu[2]}}</button>  
+        </form>
+            <form action="http://127.0.0.1:5000/cotizacion"method="post" action="request">
+        <button type="submit">{{lista_menu[3]}}</button>  
+        </form>
+    </nav> 
+ </main>
 
 </body>
 </html>
