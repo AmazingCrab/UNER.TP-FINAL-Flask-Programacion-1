@@ -19,7 +19,7 @@
             </tr>
         </thead>
         <tbody style="border: 1px solid black;border-collapse: collapse;" >
-            {% for field in fields1 %}
+            {% for field in fields1 %}<!--fields2 = dolar blue-->
                 <tr>
                     {% for value in field %}
                         <td>{{ value }}</td>
@@ -33,13 +33,13 @@
     <table style="border: 1px solid black;border-collapse: collapse;">
         <thead>
             <tr>
-                {% for header in headers %}
+                {% for header in headers %} 
                     <th>{{ header }}</th>
                 {% endfor %}
             </tr>
         </thead>
         <tbody style="border: 1px solid black;border-collapse: collapse;">
-            {% for field in fields2 %}
+            {% for field in fields2 %}<!--fields2 = dolar oficial-->
                 <tr>
                     {% for value in field %}
                         <td>{{ value }}</td>

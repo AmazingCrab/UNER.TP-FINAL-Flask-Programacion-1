@@ -1,6 +1,6 @@
 from flask import Flask, render_template, request
 
-dolar_actual = [['1000','800','1200']]
+dolar_actual = [['1000','800','1200']] # registro => lo necesitamos como data['blue'] //dolar = dolarapi.data['oficial']
 
 def cotizacion():
     lista_menu =  [
@@ -11,6 +11,7 @@ def cotizacion():
     'Concesionario La Ñata',#h1
     'Bienvenido!'] #h2
 
-    headers = ['Dolar Promedio','Dolar Venta','Dolar Compra']
+    headers = ['Dolar Promedio','Dolar Venta','Dolar Compra'] #encabzados
+
 
     return render_template('cotizacion.html', **{'lista_menu': lista_menu, 'headers': headers, 'fields1': dolar_actual, 'fields2':dolar_actual})
