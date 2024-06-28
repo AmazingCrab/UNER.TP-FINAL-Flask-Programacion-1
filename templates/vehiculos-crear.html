@@ -1,0 +1,35 @@
+{%extends 'base.html'%}
+{% block title %}Clientes{% endblock %}
+
+{% block content %}
+<header>
+    <h1>{{lista_menu[0]}}</h1>
+    <h2>{{lista_menu[1]}}</h2>
+</header>
+<main>
+    <h3>{{lista_menu[2]}}</h3>
+    <form action="/procesar" method="post" onsubmit="alert('Cliente Creado Exitosamente');">
+        <label for="patente"></label><br>
+        <input placeholder = "Ingresa la Patente" type="text" id="patente" name="patente"><br>
+        <label for="marca"></label><br>
+        <input placeholder ="Ingresa la Marca" type="text" id="marca" name="marca"><br>
+        <label for="modelo"></label><br>
+        <input placeholder="Ingresa el Modelo" type="text" id="modelo" name="modelo"><br>
+        <label for="tipo"></label><br>
+        <input placeholder ="Tipo de Vevhículo" type="text" id="tipo" name="tipo"><br>
+        <label for="anio"></label><br>
+        <input placeholder ="Ingresa el año" type="text" id="kilometraje" name="anio"><br>
+        <label for="kilometraje"></label><br>
+        <input placeholder ="Ingresa el Kilometraje" type="text" id="anio" name="anio"><br>
+        <label for="precio_compra"></label>
+        <input placeholder =" Ingresa el Precio de Compra" type="text" id="precio_compra" name="precio_compra"><br>
+        <label for="precio_venta"></label>
+        <input placeholder ="Ingresa el Precio de Venta" type="text" id="precio_venta" name="precio_venta"><br>
+        <label for="estado"></label><br>
+        <input placeholder ="Ingresa el Estado" type="text" id="estado" name="estado"><br>
+        <label for="submit"></label><br>
+        <input type="submit" value="Crear Vehículo"><br>
+    </form>
+</main>
+</body>
+</html>{% endblock %}

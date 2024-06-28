@@ -1,4 +1,6 @@
-from flask import Flask, render_template, request
+from flask import Flask, render_template, request, redirect, url_for
+
+
 import requests
 
 from vehiculos import *
@@ -7,6 +9,10 @@ from transacciones import *
 #from dolarapi import *
 
 app = Flask(__name__, template_folder="templates")
+app.config['FLASK_SKIP_CSRF'] = True
+app.static_folder = 'static'
+
+
 
 # Variables globales
 
@@ -32,18 +38,33 @@ def index():
     
     return render_template('index.html', lista_menu=lista_menu)
 
+
+###############################################################
+
 @app.route('/vehiculos', methods=['GET', 'POST'])
 def vehiculos_ppal():
     return vehiculos()
+
+@app.route('/vehiculos-crear', methods=['GET', 'POST'])
+def vehiculos_crear():
+    return vehiculosCrear()
+
+
+#################################################################
 
 @app.route('/clientes', methods=['GET', 'POST'])
 def clientes_ppal():
     return clientes()
 
+
 @app.route('/transacciones', methods=['GET', 'POST'])
 def transacciones_ppal():
     return transacciones()
 
+
+
+
+#################### DOLAR OKEY ####################
 @app.route('/cotizacion', methods=['GET', 'POST'])
 def cotizacion_ppal():
     blue_string, oficial_string = obtener_cotizacion_dolar()
@@ -78,4 +99,4 @@ def obtener_cotizacion_dolar():
         return blue_string, oficial_string
     else:
         return [], []
-    
+####################################################

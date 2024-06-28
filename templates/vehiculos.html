@@ -1,6 +1,7 @@
-<!DOCTYPE html>
-<html>
-<body>
+{%extends 'base.html'%}
+{% block title %}Vehículos{% endblock %}
+
+{% block content %}
 <header>
     <h1>{{lista_menu[8]}}</h1>
     <h2>{{lista_menu[9]}}</h2>
@@ -8,7 +9,7 @@
 <main>
     <h3>{{lista_menu[6]}}</h3>
     <nav>
-        <form action="http://127.0.0.1:5000/x" method="post" action="request">
+        <form action="http://127.0.0.1:5000/vehiculos-crear" method="post" action="request">
             <button type="submit">{{lista_menu[0]}}</button>
         </form>  
         <form action="http://127.0.0.1:5000/x" method="post" action="request">
@@ -27,6 +28,4 @@
             <button type="submit">{{lista_menu[5]}}</button>  
         </form>
     </nav> 
-</main>
-</body>
-</html>
+</main>{% endblock%}

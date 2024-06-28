@@ -1,6 +1,7 @@
-<!DOCTYPE html>
-<html>
-<body>
+{%extends 'base.html'%}
+{% block title %}Clientes{% endblock %}
+
+{% block content %}
 <header>
     <h1>{{lista_menu[8]}}</h1>
     <h2>{{lista_menu[9]}}</h2>
@@ -27,7 +28,4 @@
         <button type="submit">{{lista_menu[5]}}</button>  
     </form>
 </nav> 
- </main>
-
-</body>
-</html>
+ </main>{% endblock %}
