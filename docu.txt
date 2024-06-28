@@ -1,0 +1,9 @@
+ejecutar:flask hello run
+ver :127.0.0.1:5000
+
+---
+Si tienes el depurador desactivado o confías en los usuarios de tu red, puedes hacer que el servidor esté disponible públicamente simplemente añadiendo --host=0.0.0 a la línea de comandos:
+
+$ flask run --host=0.0.0.0
+Esto le dice a su sistema operativo que escuche en todas las IPs públicas.
+---
