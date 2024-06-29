@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-Vehículos
+Crear Vehículos
 {% endblock %}
 
 {% block content %}
@@ -9,8 +9,9 @@ Vehículos
     <h1>{{lista_crear[0]}}</h1>
     <h2>{{lista_crear[1]}}</h2>
 </header>
-<main>
     <h3>{{lista_crear[2]}}</h3>
+<main>
+    <h4>{{lista_crear[3]}}</h4>
     <form action="/submit-c-v" method="POST" onsubmit="alert('Cliente Creado Exitosamente');">
         <label for="patente"></label><br>
         <input placeholder = "Ingresa la Patente" type="text" id="patente" name="patente"><br>
@@ -34,9 +35,7 @@ Vehículos
         <input type="submit" value="Crear Vehículo" name="submit"><br>
     </form>
     <form action="http://127.0.0.1:5000/vehiculos" method="POST" action="request">
-        <button type="submit">{{lista_crear[3]}}</button>
+        <button type="submit">{{lista_crear[4]}}</button>
     </form>  
 </main>
-</body>
-</html>
 {% endblock %}
