@@ -3,11 +3,11 @@
 
 {% block content %}
 <header>
-    <h1>{{lista_menu[0]}}</h1>
-    <h2>{{lista_menu[1]}}</h2>
+    <h1>{{lista_crear[0]}}</h1>
+    <h2>{{lista_crear[1]}}</h2>
 </header>
 <main>
-    <h3>{{lista_menu[2]}}</h3>
+    <h3>{{lista_crear[2]}}</h3>
     <form action="/procesar" method="post" onsubmit="alert('Cliente Creado Exitosamente');">
         <label for="patente"></label><br>
         <input placeholder = "Ingresa la Patente" type="text" id="patente" name="patente"><br>
