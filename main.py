@@ -85,7 +85,7 @@ def vehiculos_crear():
     return render_template('vehiculos-crear.html', lista_crear=lista_crear)
 
 @app.route('/submit-c-v', methods=["POST"])
-def crear_submit_form():
+def vehiculos_crear_submit_form():
 
     with open('vehiculos.json', 'r') as file:
         vehiculos = json.load(file)
@@ -125,7 +125,7 @@ def vehiculos_borrar():
     return render_template('vehiculos-borrar.html', lista_borrar=lista_borrar)
 
 @app.route("/submit-b-v", methods=["POST"])
-def borrar_submit_form():
+def vehiculos_borrar_submit_form():
 
     patente = None
     with open('vehiculos.json', 'r') as file:
@@ -156,8 +156,6 @@ def borrar_submit_form():
     print("Vehiculo eliminado correctamente.")
     return redirect(url_for("vehiculos"))
 
-
-
 @app.route('/vehiculos-pre-editar', methods=['POST','GET'])
 def vehiculos_pre_editar():
     lista_pre_editar = [
@@ -170,7 +168,7 @@ def vehiculos_pre_editar():
     return render_template('vehiculos-pre-editar.html', lista_pre_editar=lista_pre_editar)
 
 @app.route('/submit-pre-e-v', methods=['POST','GET'])
-def vehiculos_pre_editar_submit_form():
+def vehiculos_pre_e_submit_form():
     global vehiculo_pre_editar
     
     form_data = request.form
@@ -195,43 +193,45 @@ def vehiculos_editar():
     ]
     return render_template('vehiculos-editar.html', lista_editar=lista_editar)
 
-#@app.route('/submit-e-v', methods=["POST"])
+@app.route('/submit-e-v', methods=["POST"])
+def vehiculos_editar_submit_form():
+    with open('vehiculos.json', 'r') as file:
+        vehiculos = json.load(file)
+    #   cargamos los datos de json en memoria
 
-#   #   # tenemos que tomar la variable y al terminar borrarla
-####     o ponerla en cero en otros lados psino habilita a cambiar directamente
+    form_data = request.form
+    #cargamos la data del form
+    try:
+        parametro = int(vehiculo_pre_editar)
+        editar_por = 'item_id'
+    except ValueError:
+        parametro = vehiculo_pre_editar
+        editar_por = 'patente'
+
+    vehiculo_form = {
+    'item_id':form_data.get('item_id',None),
+    'patente': form_data.get('patente',None),
+    'marca': form_data.get('marca',None),
+    'modelo': form_data.get('modelo',None),
+    'tipo': form_data.get('tipo',None),
+    'anio': form_data.get('anio',None),
+    'kilometraje:': form_data.get('kilometraje',None),
+    'precio_compra': form_data.get('precio_compra',None ),
+    'precio_venta': form_data.get('precio_venta',None),
+    'estado': form_data.get('estado',None)
+    }
+
+    for vehiculo in vehiculos:
+        if vehiculo[editar_por] == parametro:
+            vehiculo.update(vehiculo_form)
+            break
+
+    vehiculos.append(nuevo_vehiculo)
+    with open('vehiculos.json', 'w') as file:
+        json.dump(vehiculos, file, indent=4)
+    print("Vehiculo actualizado correctamente.")
     
-
-
-#@app.route('/submit-e-v', methods=["POST"])
-#def editar_submit_form():
-#
-#    with open('vehiculos.json', 'r') as file:
-#        vehiculos = json.load(file)
-#        
-#    form_data = request.form
-#    # Get the form data
-#
-#    vehiculo_form = {
-#    'item_id':form_data.get('item_id',None),
-#    'patente': form_data.get('patente',None),
-#    'marca': form_data.get('marca',None),
-#    'modelo': form_data.get('modelo',None),
-#    'tipo': form_data.get('tipo',None),
-#    'anio': form_data.get('anio',None),
-#    'kilometraje:': form_data.get('kilometraje',None),
-#    'precio_compra': form_data.get('precio_compra',None ),
-#    'precio_venta': form_data.get('precio_venta',None),
-#    'estado': form_data.get('estado',None)
-#    }
-#
-#    for vehiculo in vehiculos:
-#        
-#
-#    vehiculos.append(nuevo_vehiculo)
-#    with open('vehiculos.json', 'w') as file:
-#        json.dump(vehiculos, file, indent=4)
-#    print("Vehiculo creado correctamente.")
-#    return redirect(url_for("vehiculos"))
+    return redirect(url_for("vehiculos"))
 
 
 
