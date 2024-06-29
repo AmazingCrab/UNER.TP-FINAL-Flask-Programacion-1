@@ -5,7 +5,9 @@ import json
 
 app = Flask(__name__, template_folder="templates",static_folder='../static')
 app.config['FLASK_SKIP_CSRF'] = True
-app.static_folder = 'static'
+app.config["STATIC_FOLDER"] = "static"
+app.config["STATIC_URL_PATH"] = "/static"
+
 
 # Abrir y cargar el archivo clientes.json
 with open('clientes.json', 'r') as clientes_file:
@@ -83,7 +85,7 @@ def vehiculos_crear():
 #@app.route(/'vehiculos-borrar')
 
 @app.route("/submit-c-v", methods=["POST"])
-def submit_form():
+def crear_submit_form():
 
     # Save the updated vehiculos list to the vehiculos.json file
     with open('vehiculos.json', 'r') as file:

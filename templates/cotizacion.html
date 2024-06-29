@@ -1,8 +1,10 @@
-{%extends 'base.html'%}
-{% block title %}Cotización de Dolar{% endblock %}
+{% extends "base.html" %}
+
+{% block title %}
+Cotización de Dolar
+{% endblock %}
 
 {% block content %}
-<header>
 </header>
 <main>  
     <h3>{{lista_menu[0]}}</h3>
@@ -50,4 +52,5 @@
     <form action="http://127.0.0.1:5000" method="post" action="request">
         <button type="submit">{{lista_menu[3]}}</button>  
     </form>
-</main>{% endblock %}
+</main>
+{% endblock %}
