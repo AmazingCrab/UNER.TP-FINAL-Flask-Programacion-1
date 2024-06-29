@@ -17,4 +17,5 @@ def clientes():
     opcion_menu_clientes = request.form.get('opcion')
 
     return render_template('clientes.html', **{'lista_menu': lista_menu})
+
     

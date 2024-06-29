@@ -1,18 +1,28 @@
-from flask import Flask, render_template, request, redirect, url_for
-
+from flask import Flask, render_template, redirect, url_for
 
 import requests
+import json
 
 from vehiculos import *
 from clientes import *
 from transacciones import *
 #from dolarapi import *
 
-app = Flask(__name__, template_folder="templates")
+# Abrir y cargar el archivo clientes.json
+with open('clientes.json', 'r') as clientes_file:
+    clientes = json.load(clientes_file)
+
+# Abrir y cargar el archivo ventas.json
+with open('vehiculos.json', 'r') as vehiculos_file:
+    vehiculos = json.load(vehiculos_file)
+
+
+
+app = Flask(__name__, template_folder="templates",static_folder='../static')
 app.config['FLASK_SKIP_CSRF'] = True
 app.static_folder = 'static'
 
-
+global lista_menu
 
 # Variables globales
 
@@ -20,9 +30,7 @@ app.static_folder = 'static'
 
 
 @app.route('/', methods=['GET', 'POST'])
-def index():
-    global opcion_menu_ppal
-    
+def index():   
     lista_menu = [
         '1. Vehículos',
         '2. Clientes', 
@@ -33,8 +41,6 @@ def index():
         'Concesionario La Ñata',
         'Bienvenido!'
     ]
-     
-    opcion_menu_ppal = request.form.get('opcion')
     
     return render_template('index.html', lista_menu=lista_menu)
 
@@ -43,11 +49,58 @@ def index():
 
 @app.route('/vehiculos', methods=['GET', 'POST'])
 def vehiculos_ppal():
-    return vehiculos()
+    # def vehiculos():
+     lista_menu = [
+     '1. Crear Vehículos', 
+     '2. Editar Vehículos', 
+     '3. Eliminar Vehículo', 
+     '4. Listar Vehículo', 
+     '5. Buscar Vehículo',
+     '6. Volver al Menú Principal',
+     'Vehículos',
+     'Ir al Menú',
+     'Concesionario La Ñata',#h1
+     'Bienvenido!'] #h2
+ 
+     opcion_menu_vehiculos = request.form.get('opcion')
+ 
+     return render_template('vehiculos.html', **{'lista_menu': lista_menu})
+   # return vehiculos()
 
 @app.route('/vehiculos-crear', methods=['GET', 'POST'])
-def vehiculos_crear():
-    return vehiculosCrear()
+#def vehiculos_crear():
+#    return vehiculosCrear()
+
+#@app.route('/vehiculos-crear', methods=['POST'])
+
+#def update_json(file_path, new_dictionary):
+#    update_json('vehiculos.json', auto_nuevo)
+#    with open(file_path, 'r+') as f:
+#        data = json.load(f)
+#        data.update(new_dictionary)
+#        f.seek(0)
+#        json.dump(data, f, indent=4)
+
+
+def guardar_auto_nuevo():
+    formulario = request.form
+    auto_nuevo = dict(formulario)
+    
+#    update_json('vehiculos.json', auto_nuevo)
+    with open(vehiculos.json, 'r+') as f:
+        data = json.load(f)
+
+    with load(vehiculos.json, 'r+') as f:
+        data = json.load(f)
+        data.update(auto_nuevo)
+        f.seek(0)
+        json.dump(data, f, indent=4)
+
+ #   update_json('vehiculos.json', auto_nuevo)
+
+    return 'Datos del formulario guardados en el diccionario.'
+
+
 
 
 #################################################################
