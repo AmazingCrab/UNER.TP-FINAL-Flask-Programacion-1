@@ -2,14 +2,15 @@
     {
         "item_id": 1,
         "patente": "ABC123",
-        "marca": "Toyota",
-        "modelo": "Corolla",
-        "tipo": "Sed\u00e1n",
-        "anio": 2020,
+        "marca": "",
+        "modelo": "",
+        "tipo": "",
+        "anio": "",
         "kilometraje": 15000,
-        "precio_compra": 250000,
-        "precio_venta": 300000,
-        "estado": "Disponible"
+        "precio_compra": "",
+        "precio_venta": "",
+        "estado": "",
+        "kilometraje:": ""
     },
     {
         "item_id": 2,

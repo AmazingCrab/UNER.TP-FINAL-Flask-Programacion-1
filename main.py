@@ -209,8 +209,6 @@ def vehiculos_editar_submit_form():
         editar_por = 'patente'
 
     vehiculo_form = {
-    'item_id':form_data.get('item_id',None),
-    'patente': form_data.get('patente',None),
     'marca': form_data.get('marca',None),
     'modelo': form_data.get('modelo',None),
     'tipo': form_data.get('tipo',None),
@@ -220,17 +218,21 @@ def vehiculos_editar_submit_form():
     'precio_venta': form_data.get('precio_venta',None),
     'estado': form_data.get('estado',None)
     }
+    if editar_por == 'patente':
+        vehiculo_form['patente'] = vehiculo_pre_editar
+    else:
+        vehiculo_form['item_id'] = vehiculo_pre_editar
 
     for vehiculo in vehiculos:
         if vehiculo[editar_por] == parametro:
             vehiculo.update(vehiculo_form)
             break
 
-    vehiculos.append(nuevo_vehiculo)
+
     with open('vehiculos.json', 'w') as file:
         json.dump(vehiculos, file, indent=4)
     print("Vehiculo actualizado correctamente.")
-    
+
     return redirect(url_for("vehiculos"))
 
 
