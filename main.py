@@ -153,7 +153,8 @@ def borrar_submit_form():
     with open('vehiculos.json', 'w') as file:
         json.dump(vehiculos, file, indent=4)
     print("Vehiculo eliminado correctamente.")
-    return render_template('vehiculos-borrar.html', lista_borrar=lista_borrar)
+    return redirect(url_for("vehiculos"))
+
 
 ################################################################################
 ################################################################################
