@@ -78,16 +78,14 @@ def vehiculos_crear():
     lista_crear = [
         'Concesionario La Ñata',  # h1
         'Bienvenido!',  # h2
-        'Vehículo Nuevo'  # h3
+        'Vehículo Nuevo',  # h3
+        'Volver a Vehículos',
     ]
     return render_template('vehiculos-crear.html', lista_crear=lista_crear)
 
-#@app.route(/'vehiculos-borrar')
-
-@app.route("/submit-c-v", methods=["POST"])
+@app.route('/submit-c-v', methods=["POST"])
 def crear_submit_form():
 
-    # Save the updated vehiculos list to the vehiculos.json file
     with open('vehiculos.json', 'r') as file:
         vehiculos = json.load(file)
         
@@ -114,8 +112,51 @@ def crear_submit_form():
     return redirect(url_for("vehiculos"))
 
 
+@app.route('/vehiculos-borrar', methods=['GET', 'POST'])
+def vehiculos_borrar():
+    lista_borrar = [
+        'Concesionario La Ñata',  # h1
+        'Bienvenido!',  # h2
+        'Eliminar Vehículo',  # h3
+        'Ingrese el ID o la Pantente del Vechículo que desea eliminar',
+        'Volver a Vehículos',
+    ]
+    return render_template('vehiculos-borrar.html', lista_borrar=lista_borrar)
 
+@app.route("/submit-b-v", methods=["POST"])
+def borrar_submit_form():
 
+    patente = None
+    with open('vehiculos.json', 'r') as file:
+        vehiculos = json.load(file)
+    #   cargamos los datos de json en memoria
+    form_data = request.form
+    #   traemos los datos del formulario
+    try:
+        item_id = int(form_data.get('item_id'))  # Convert item_id to integer
+    except ValueError:
+        item_id = 0
+        patente = form_data.get('patente')
+
+    if item_id != 0:
+        parametro = 'item_id'
+        data_a_buscar = item_id
+    else:
+        parametro = 'patente'
+        data_a_buscar = patente
+    
+    for vehiculo in vehiculos:
+        if vehiculo[parametro] == data_a_buscar:
+            vehiculos.remove(vehiculo)
+            break  # Exit the loop after removing the vehicle
+    
+    with open('vehiculos.json', 'w') as file:
+        json.dump(vehiculos, file, indent=4)
+    print("Vehiculo eliminado correctamente.")
+    return render_template('vehiculos-borrar.html', lista_borrar=lista_borrar)
+
+################################################################################
+################################################################################
 @app.route('/clientes', methods=['GET', 'POST'])
 def clientes():
     lista_menu = [
