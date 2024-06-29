@@ -21,11 +21,8 @@ with open('vehiculos.json', 'r') as vehiculos_file:
 ######        ####     #####    ####   ###########
 ###         ########    ##########    #######  #######
 
-def asignarProximoId():
-    if not dicccionario_json:
-        return 1
-        ultimoId = max(registro['id'] for registro in dicccionario_json)
-    return ultimoId + 1
+
+    
 
 
 
@@ -37,6 +34,8 @@ def asignarProximoId():
 ##########      #      ######    #####  ####  ########
 ######        ####     #####    ####   ###########
 ###         ########    ##########    #######  #######
+
+
 @app.route('/', methods=['GET', 'POST'])
 def index():   
     lista_menu = [
@@ -84,34 +83,32 @@ def vehiculos_crear():
 
 @app.route("/submit-c-v", methods=["POST"])
 def submit_form():
+
+    # Save the updated vehiculos list to the vehiculos.json file
+    with open('vehiculos.json', 'r') as file:
+        vehiculos = json.load(file)
+        
     form_data = request.form
-    vehiculo_id = asignarProximoIdent(form_data)
-    nuevo_vehiculo = {"patente": "s", "marca": "s", "modelo": "s", "tipo": "s", "anio": "s", "precio_compra": "s", "precio_venta": "s", "estado": "s", "submit": "Crear Veh\u00edculo"}
+    # Get the form data
+    item_id = len(vehiculos) + 1
 
-    
-    print ((form_data))
-    
-    
-    # Process the form data as needed
-    # For example, save it to a database or perform some calculations
-    with open('vehiculos.json', 'a') as file:
-        json.dump(form_data, file)
-        file.write('\n')
-
-
+    nuevo_vehiculo = {
+    'item_id':item_id,
+    'patente': form_data.get('patente'),
+    'marca': form_data.get('marca'),
+    'modelo': form_data.get('modelo'),
+    'tipo': form_data.get('tipo'),
+    'anio': form_data.get('anio'),
+    'kilometraje:': form_data.get('kilometraje'),
+    'precio_compra': form_data.get('precio_compra'),
+    'precio_venta': form_data.get('precio_venta'),
+    'estado': form_data.get('estado')
+    }
+    vehiculos.append(nuevo_vehiculo)
+    with open('vehiculos.json', 'w') as file:
+        json.dump(vehiculos, file, indent=4)
+    print("Vehiculo creado correctamente.")
     return 'Form data received!'
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

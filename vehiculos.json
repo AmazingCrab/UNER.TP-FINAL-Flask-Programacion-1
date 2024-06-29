@@ -1,1 +1,38 @@
-{"patente": "s", "marca": "s", "modelo": "s", "tipo": "s", "anio": "s", "precio_compra": "s", "precio_venta": "s", "estado": "s", "submit": "Crear Veh\u00edculo"}
+[
+    {
+        "item_id": 1,
+        "patente": "ABC123",
+        "marca": "Toyota",
+        "modelo": "Corolla",
+        "tipo": "Sed\u00e1n",
+        "anio": 2020,
+        "kilometraje": 15000,
+        "precio_compra": 250000,
+        "precio_venta": 300000,
+        "estado": "Disponible"
+    },
+    {
+        "item_id": 2,
+        "patente": "DEF456",
+        "marca": "Ford",
+        "modelo": "Fiesta",
+        "tipo": "Sed\u00e1n",
+        "anio": 2019,
+        "kilometraje": 20000,
+        "precio_compra": 220000,
+        "precio_venta": 250000,
+        "estado": "Disponible"
+    },
+    {
+        "item_id": 3,
+        "patente": "GHI789",
+        "marca": "Chevrolet",
+        "modelo": "Camaro",
+        "tipo": "Deportivo",
+        "anio": 2021,
+        "kilometraje": 5000,
+        "precio_compra": 550000,
+        "precio_venta": 600000,
+        "estado": "Disponible"
+    }
+]
