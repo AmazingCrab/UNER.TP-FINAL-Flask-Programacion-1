@@ -1,17 +1,5 @@
 [
     {
-        "item_id": null,
-        "patente": "DEF456",
-        "marca": "Ford",
-        "modelo": "Fiesta",
-        "tipo": "Sed\u00e1n",
-        "anio": 2019,
-        "kilometraje": 20000,
-        "precio_compra": 220000,
-        "precio_venta": 250000,
-        "estado": "Disponible"
-    },
-    {
         "item_id": 3,
         "patente": "GHI789",
         "marca": "Chevrolet",
@@ -20,8 +8,6 @@
         "anio": 2021,
         "kilometraje": 5000,
         "precio_compra": 550000,
-        "precio_venta": 600000,
-        "estado": "Disponible"
     },
     {
         "item_id": 4,
