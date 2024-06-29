@@ -1,14 +1,11 @@
 from flask import Flask, render_template, request, url_for
 import requests
 
-
 import json
-
 
 app = Flask(__name__, template_folder="templates",static_folder='../static')
 app.config['FLASK_SKIP_CSRF'] = True
 app.static_folder = 'static'
-
 
 # Abrir y cargar el archivo clientes.json
 with open('clientes.json', 'r') as clientes_file:
@@ -17,16 +14,29 @@ with open('clientes.json', 'r') as clientes_file:
 # Abrir y cargar el archivo ventas.json
 with open('vehiculos.json', 'r') as vehiculos_file:
     vehiculos = json.load(vehiculos_file)
+################################################################################
+################################################################################
+##############
+##########      #      ######    #####  ####  ########
+######        ####     #####    ####   ###########
+###         ########    ##########    #######  #######
+
+def asignarProximoId():
+    if not dicccionario_json:
+        return 1
+        ultimoId = max(registro['id'] for registro in dicccionario_json)
+    return ultimoId + 1
 
 
 
-#global lista_menu
-
-# Variables globales
-
-# Función para obtener la cotización del dólar
 
 
+################################################################################
+################################################################################
+##############
+##########      #      ######    #####  ####  ########
+######        ####     #####    ####   ###########
+###         ########    ##########    #######  #######
 @app.route('/', methods=['GET', 'POST'])
 def index():   
     lista_menu = [
@@ -75,16 +85,21 @@ def vehiculos_crear():
 @app.route("/submit-c-v", methods=["POST"])
 def submit_form():
     form_data = request.form
+    vehiculo_id = asignarProximoIdent(form_data)
+    nuevo_vehiculo = {"patente": "s", "marca": "s", "modelo": "s", "tipo": "s", "anio": "s", "precio_compra": "s", "precio_venta": "s", "estado": "s", "submit": "Crear Veh\u00edculo"}
+
+    
     print ((form_data))
+    
+    
     # Process the form data as needed
     # For example, save it to a database or perform some calculations
     with open('vehiculos.json', 'a') as file:
         json.dump(form_data, file)
         file.write('\n')
 
+
     return 'Form data received!'
-
-
 
 
 
