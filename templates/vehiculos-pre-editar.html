@@ -1,0 +1,32 @@
+{% extends "base.html" %}
+
+{% block title %}
+Editar Vehículos
+{% endblock %}
+
+{% block head %}
+<script>
+    function showAlert() {
+        var patente = document.getElementById('patente').value;
+        var selection = document.querySelector('input[name="selection"]:checked').value;
+        alert('Guardamos tu selección: ' + patente + '\nOpción seleccionada: ' + selection);
+    }
+</script>
+{% endblock %}
+
+{% block content %}
+<header>
+    <h1>{{lista_pre_editar[0]}}</h1>
+    <h2>{{lista_pre_editar[1]}}</h2>
+</header>
+<h3>{{lista_pre_editar[2]}}</h3>
+<h4>{{lista_pre_editar[3]}}</h4>
+<form action="/submit-pre-e-v" method="POST">
+    <div>
+        <label for="parametro"></label><br>
+        <input placeholder = "Ingresa ID ó Patente" type="text" id="parametro" name="parametro"><br>
+</form>
+<form action="http://127.0.0.1:5000/vehiculos" method="POST" action="request">
+    <button type="submit">{{lista_pre_editar[4]}}</button>
+</form>
+{% endblock %}

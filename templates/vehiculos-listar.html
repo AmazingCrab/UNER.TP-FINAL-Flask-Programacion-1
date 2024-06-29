@@ -1,0 +1,56 @@
+{% extends "base.html" %}
+
+{% block title %}
+Listado de Vehículos
+{% endblock %}
+
+{% block content %}
+<header>
+    <h1>{{lista_listar[0]}}</h1>
+    <h2>{{lista_listar[1]}}</h2>
+</header>
+    <h3>{{lista_listar[2]}}</h3>
+<main>
+    <h4>{{lista_listar[3]}}</h4>
+    <!DOCTYPE html>
+<html>
+<head>
+    <title>Vehículos</title>
+</head>
+<body>
+    <h1>Listado de Vehículos</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Patente</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Tipo</th>
+                <th>Año</th>
+                <th>Kilometraje</th>
+                <th>Precio de Compra</th>
+                <th>Precio de Venta</th>
+                <th>Estado</th>
+                
+            </tr>
+        </thead>
+        <tbody>
+            {% for vehiculo in vehiculos %}
+            <tr>
+                <td>{{ vehiculo.item_id }}</td>
+                <td>{{ vehiculo.patente }}</td>
+                <td>{{ vehiculo.marca }}</td>
+                <td>{{ vehiculo.modelo }}</td>
+                <!-- Add more table data as needed -->
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</body>
+</html>
+    <form action="http://127.0.0.1:5000/vehiculos" method="POST" action="request">
+        <button type="submit">{{lista_listar[4]}}</button>
+    </form>
+</main>
+{% endblock%}
