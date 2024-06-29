@@ -1,5 +1,5 @@
 from flask import Flask, render_template, request
-
+import requests
 dolar_actual = [['1000','800','1200']] # registro => lo necesitamos como data['blue'] //dolar = dolarapi.data['oficial']
 
 def cotizacion():

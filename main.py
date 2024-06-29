@@ -1,5 +1,5 @@
-from flask import Flask, render_template, redirect, url_for
-from flask import request
+from flask import Flask, render_template, request, url_for
+import requests
 
 import json
 
@@ -135,11 +135,11 @@ def cotizacion_ppal():
 
     lista_menu =  [
     'Cotizacion del Dolar',
-        'Dolar Blue',
-        'Dolar Oficial',
-        'Volver al Menu Principal',
-        'Concesionario La Ñata',#h1
-        'Bienvenido!'] #h2 
+    'Dolar Blue',
+    'Dolar Oficial',
+    'Volver al Menu Principal',
+    'Concesionario La Ñata',#h1
+    'Bienvenido!'] #h2 
 
     headers = ['Dolar Promedio','Dolar Venta','Dolar Compra']
     fields1 = [blue_string]  # Dólar Blue
