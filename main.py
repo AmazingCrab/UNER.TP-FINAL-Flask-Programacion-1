@@ -72,33 +72,17 @@ def vehiculos_crear():
     return render_template('vehiculos-crear.html', lista_crear=lista_crear)
 
 
-@app.route("/submit-c-v", methods=["GET"])
-def submit():
-    submit_value = request.args.get('submit', False)
-    if submit:
-        print("perrrando")
-        print("perrrando")
-        print("perrrando")            
-        print("perrrando")
-        print("perrrando")
-        print("perrrando")
-        print("perrrando")
-        print("perrrando")
-        print("perrrando")
-        print("perrrando")
-                 
-        form_data = request.form.to_dict()
-        print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
-        print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
-        print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
-        print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
-        print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
-       # Save data to JSON file or perform other actions
-        with open('vehiculos.json', 'a') as file:
-            json.dump(form_data, file)
-            file.write('\n')
+@app.route("/submit-c-v", methods=["POST"])
+def submit_form():
+    form_data = request.form
+    print ((form_data))
+    # Process the form data as needed
+    # For example, save it to a database or perform some calculations
+    with open('vehiculos.json', 'a') as file:
+        json.dump(form_data, file)
+        file.write('\n')
 
-        return print("okey perra")
+    return 'Form data received!'
 
 
 
