@@ -1,7 +1,13 @@
 from flask import Flask, render_template, request, url_for
 import requests
 
+
 import json
+
+
+app = Flask(__name__, template_folder="templates",static_folder='../static')
+app.config['FLASK_SKIP_CSRF'] = True
+app.static_folder = 'static'
 
 
 # Abrir y cargar el archivo clientes.json
@@ -13,9 +19,6 @@ with open('vehiculos.json', 'r') as vehiculos_file:
     vehiculos = json.load(vehiculos_file)
 
 
-app = Flask(__name__, template_folder="templates",static_folder='../static')
-app.config['FLASK_SKIP_CSRF'] = True
-app.static_folder = 'static'
 
 #global lista_menu
 
@@ -61,22 +64,43 @@ def vehiculos():
 
 @app.route('/vehiculos-crear', methods=['GET', 'POST'])
 def vehiculos_crear():
-    lista_crear = [    
-    'Concesionario La Ñata',#h1
-    'Bienvenido!', #h2
-    'Vehículo Nuevo'] #h3
+    lista_crear = [
+        'Concesionario La Ñata',  # h1
+        'Bienvenido!',  # h2
+        'Vehículo Nuevo'  # h3
+    ]
+    return render_template('vehiculos-crear.html', lista_crear=lista_crear)
 
-    return render_template('vehiculos-crear.html',**{'lista_crear' : lista_crear} )
 
+@app.route("/submit-c-v", methods=["GET"])
 def submit():
-    if request.method == 'POST':
+    submit_value = request.args.get('submit', False)
+    if submit:
+        print("perrrando")
+        print("perrrando")
+        print("perrrando")            
+        print("perrrando")
+        print("perrrando")
+        print("perrrando")
+        print("perrrando")
+        print("perrrando")
+        print("perrrando")
+        print("perrrando")
+                 
         form_data = request.form.to_dict()
-        #   guardo data
+        print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+        print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+        print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+        print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+        print("AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAA")
+       # Save data to JSON file or perform other actions
         with open('vehiculos.json', 'a') as file:
             json.dump(form_data, file)
             file.write('\n')
-        #   guardo data en json
-        return redirect(url_for('vehiculos'))
+
+        return print("okey perra")
+
+
 
 
 
