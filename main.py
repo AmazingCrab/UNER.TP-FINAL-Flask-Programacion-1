@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for
+from flask import Flask, render_template, request, url_for, redirect
 import requests
 
 import json
@@ -80,6 +80,7 @@ def vehiculos_crear():
     ]
     return render_template('vehiculos-crear.html', lista_crear=lista_crear)
 
+#@app.route(/'vehiculos-borrar')
 
 @app.route("/submit-c-v", methods=["POST"])
 def submit_form():
@@ -108,7 +109,8 @@ def submit_form():
     with open('vehiculos.json', 'w') as file:
         json.dump(vehiculos, file, indent=4)
     print("Vehiculo creado correctamente.")
-    return 'Form data received!'
+    return redirect(url_for("vehiculos"))
+
 
 
 

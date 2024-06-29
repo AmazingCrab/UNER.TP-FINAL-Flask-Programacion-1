@@ -34,5 +34,29 @@
         "precio_compra": 550000,
         "precio_venta": 600000,
         "estado": "Disponible"
+    },
+    {
+        "item_id": 4,
+        "patente": "BBf123",
+        "marca": "TOYOTA",
+        "modelo": "ETIOS",
+        "tipo": "Sedan",
+        "anio": "2015-06-04",
+        "kilometraje:": "64000",
+        "precio_compra": "200000",
+        "precio_venta": "240000",
+        "estado": "Reservado"
+    },
+    {
+        "item_id": 5,
+        "patente": "BBf123",
+        "marca": "TOYOTA",
+        "modelo": "ETIOS",
+        "tipo": "Sedan",
+        "anio": "2015-06-04",
+        "kilometraje:": "64000",
+        "precio_compra": "200000",
+        "precio_venta": "240000",
+        "estado": "Reservado"
     }
 ]
