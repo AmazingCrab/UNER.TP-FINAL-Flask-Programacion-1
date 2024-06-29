@@ -50,7 +50,7 @@ def index():
         'Concesionario La Ñata',
         'Bienvenido!'
     ]
-    
+  
     return render_template('index.html', lista_menu=lista_menu)
 
 
@@ -126,7 +126,6 @@ def vehiculos_borrar():
 
 @app.route("/submit-b-v", methods=["POST"])
 def vehiculos_borrar_submit_form():
-
     patente = None
     with open('vehiculos.json', 'r') as file:
         vehiculos = json.load(file)
@@ -193,7 +192,7 @@ def vehiculos_editar():
     ]
     return render_template('vehiculos-editar.html', lista_editar=lista_editar)
 
-@app.route('/submit-e-v', methods=["POST"])
+@app.route('/submit-e-v', methods=['GET', 'POST'])
 def vehiculos_editar_submit_form():
     with open('vehiculos.json', 'r') as file:
         vehiculos = json.load(file)
@@ -201,33 +200,56 @@ def vehiculos_editar_submit_form():
 
     form_data = request.form
     #cargamos la data del form
+
+    parametro = vehiculo_pre_editar # Obtenemos el parámetro del formulario
+
     try:
-        parametro = int(vehiculo_pre_editar)
+        parametro = int(parametro)
         editar_por = 'item_id'
     except ValueError:
         parametro = vehiculo_pre_editar
         editar_por = 'patente'
 
-    vehiculo_form = {
-    'marca': form_data.get('marca',None),
-    'modelo': form_data.get('modelo',None),
-    'tipo': form_data.get('tipo',None),
-    'anio': form_data.get('anio',None),
-    'kilometraje:': form_data.get('kilometraje',None),
-    'precio_compra': form_data.get('precio_compra',None ),
-    'precio_venta': form_data.get('precio_venta',None),
-    'estado': form_data.get('estado',None)
-    }
+    diccionario_a_editar = None
+
+    for registro in vehiculos:
+        if registro.get(editar_por) == parametro:
+            diccionario_a_editar=registro
+            break
+
     if editar_por == 'patente':
-        vehiculo_form['patente'] = vehiculo_pre_editar
+        patente = form_data.get('patente')
+        item_id = diccionario_a_editar('item_id')
     else:
-        vehiculo_form['item_id'] = vehiculo_pre_editar
+        item_id = form_data.get('item_id')
+        patente = diccionario_a_editar['patente']
+
+    marca= diccionario_a_editar['marca'] or form_data.get('marca')
+    modelo= diccionario_a_editar['modelo'] or form_data.get('modelo')
+    tipo= diccionario_a_editar['tipo']or form_data.get('tipo')
+    anio= diccionario_a_editar['anio']or int(form_data.get('anio'))
+    kilometraje= diccionario_a_editar['kilometraje'] or  float(form_data.get('kilometraje'))
+    precio_compra= diccionario_a_editar['precio_compra'] or float(form_data.get('precio_compra'))
+    precio_venta=diccionario_a_editar['precio_venta'] or int(form_data.get ('precio_venta'))
+    estado= diccionario_a_editar['estado'] or form_data.get('estado')
+
+    vehiculo_form = {
+        'item_id': item_id,
+        'patente': patente,
+       'marca': marca,
+       'modelo': modelo,
+        'tipo': tipo,
+        'anio': anio,
+        'kilometraje': kilometraje,
+        'precio_compra': precio_compra,
+        'precio_venta': precio_venta,
+        'estado': estado,
+        }
 
     for vehiculo in vehiculos:
         if vehiculo[editar_por] == parametro:
             vehiculo.update(vehiculo_form)
             break
-
 
     with open('vehiculos.json', 'w') as file:
         json.dump(vehiculos, file, indent=4)
@@ -235,7 +257,24 @@ def vehiculos_editar_submit_form():
 
     return redirect(url_for("vehiculos"))
 
+@app.route("/vehiculos-listar", methods=["GET", "POST"])
+def vehiculos_listar():
+    
+    with open('vehiculos.json', 'r') as file:
+        vehiculos = json.load(file)
+    #   cargamos los datos de json en memoria
+    
+    lista_listar = [
+        'Concesionario La Ñata',  # h1
+        'Bienvenido!',  # h2
+        'Listar Vehículos',  # h3
+        'Listado de Vehículos',  # h4
+        'Volver a Vehículos',  # h5
+    ]
 
+
+
+    return render_template('vehiculos-listar.html', lista_listar=lista_listar, vehiculos= vehiculos)
 
 
 

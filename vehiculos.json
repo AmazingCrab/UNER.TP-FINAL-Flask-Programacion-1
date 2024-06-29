@@ -1,19 +1,6 @@
 [
     {
-        "item_id": 1,
-        "patente": "ABC123",
-        "marca": "",
-        "modelo": "",
-        "tipo": "",
-        "anio": "",
-        "kilometraje": 15000,
-        "precio_compra": "",
-        "precio_venta": "",
-        "estado": "",
-        "kilometraje:": ""
-    },
-    {
-        "item_id": 2,
+        "item_id": null,
         "patente": "DEF456",
         "marca": "Ford",
         "modelo": "Fiesta",
@@ -59,5 +46,17 @@
         "precio_compra": "200000",
         "precio_venta": "240000",
         "estado": "Reservado"
+    },
+    {
+        "item_id": 5,
+        "patente": "AVV123",
+        "marca": "",
+        "modelo": "ADASD",
+        "tipo": "ADADS",
+        "anio": "",
+        "kilometraje:": "",
+        "precio_compra": "",
+        "precio_venta": "",
+        "estado": ""
     }
 ]
