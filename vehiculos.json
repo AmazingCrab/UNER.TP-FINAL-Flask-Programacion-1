@@ -1,13 +1,15 @@
 [
     {
-        "item_id": 3,
+        "item_id": 2,
         "patente": "GHI789",
         "marca": "Chevrolet",
         "modelo": "Camaro",
         "tipo": "Deportivo",
-        "anio": 2021,
-        "kilometraje": 5000,
-        "precio_compra": 550000,
+        "anio": "2021",
+        "kilometraje": "5000",
+        "precio_compra": "200000",
+        "precio_venta": "240000",
+        "estado": "Reservado"
     },
     {
         "item_id": 4,
