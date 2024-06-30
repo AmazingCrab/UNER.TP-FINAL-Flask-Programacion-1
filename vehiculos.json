@@ -18,7 +18,7 @@
         "modelo": "ETIOS",
         "tipo": "Sedan",
         "anio": "2015-06-04",
-        "kilometraje:": "64000",
+        "kilometraje": "64000",
         "precio_compra": "200000",
         "precio_venta": "240000",
         "estado": "Reservado"
@@ -30,25 +30,13 @@
         "modelo": "ETIOS",
         "tipo": "Sedan",
         "anio": "2015-06-04",
-        "kilometraje:": "64000",
+        "kilometraje": "64000",
         "precio_compra": "200000",
         "precio_venta": "240000",
         "estado": "Reservado"
     },
     {
         "item_id": 5,
-        "patente": "AVA123",
-        "marca": "TOYOTA",
-        "modelo": "ETIOS",
-        "tipo": "Sedan",
-        "anio": "2015-06-04",
-        "kilometraje:": "64000",
-        "precio_compra": "200000",
-        "precio_venta": "240000",
-        "estado": "Reservado"
-    },
-    {
-        "item_id": 3,
         "patente": "GHI789",
         "marca": "Chevrolet",
         "modelo": "Camaro",
@@ -60,15 +48,15 @@
         "estado": "Reservado"
     },
     {
-        "item_id": 3,
-        "patente": "GHI789",
-        "marca": "Chevrolet",
-        "modelo": "Camaro",
-        "tipo": "Deportivo",
-        "anio": "2021",
-        "kilometraje": "5000",
-        "precio_compra": "200000",
-        "precio_venta": "240000",
-        "estado": "Reservado"
+        "item_id": "GIT 777",
+        "patente": "GIT 777",
+        "marca": "Kawasaki",
+        "modelo": "Ninja",
+        "tipo": "Moto",
+        "anio": "2007-11-12",
+        "kilometraje": "600000",
+        "precio_compra": "8000",
+        "precio_venta": "9000",
+        "estado": "Vendido"
     }
 ]

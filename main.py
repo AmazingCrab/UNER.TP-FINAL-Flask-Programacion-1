@@ -101,7 +101,7 @@ def vehiculos_crear_submit_form():
     'modelo': form_data.get('modelo'),
     'tipo': form_data.get('tipo'),
     'anio': form_data.get('anio'),
-    'kilometraje:': form_data.get('kilometraje'),
+    'kilometraje': form_data.get('kilometraje'),
     'precio_compra': form_data.get('precio_compra'),
     'precio_venta': form_data.get('precio_venta'),
     'estado': form_data.get('estado')
@@ -237,8 +237,8 @@ def vehiculos_editar_submit_form():
     vehiculo_form = {
         'item_id': item_id,
         'patente': patente,
-       'marca': marca,
-       'modelo': modelo,
+        'marca': marca,
+        'modelo': modelo,
         'tipo': tipo,
         'anio': anio,
         'kilometraje': kilometraje,
