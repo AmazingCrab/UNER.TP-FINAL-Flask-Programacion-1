@@ -1,6 +1,5 @@
 from flask import Flask, render_template, request, url_for, redirect
 import requests
-
 import json
 
 app = Flask(__name__, template_folder="templates",static_folder='../static')
@@ -270,17 +269,39 @@ def vehiculos_listar():
     lista_listar = [
         'Concesionario La Ñata',  # h1
         'Bienvenido!',  # h2
-        'Listar Vehículos',  # h3
-        'Listado de Vehículos',  # h4
-        'Volver a Vehículos',  # h5
+        'Listado de Vehículos',  # h3
+        'Volver a Vehículos',
     ]
 
     return render_template('vehiculos-listar.html', lista_listar=lista_listar, vehiculos= vehiculos)
 
 
+@app.route("/vehiculos-buscar", methods=["GET", "POST"])
+def vehiculos_buscar():
+    lista_buscar = [
+        'Concesionario La Ñata',  # h1
+        'Bienvenido!',  # h2
+        'Buscar Vehículo',  # h3
+        'Ingrese el ID o la Patente del Vehículo que desea buscar', # h4
+        'Volver a Vehículos',
+    ]
+    return render_template('vehiculos-buscar.html', lista_buscar=lista_buscar)
 
+@app.route('/vehiculos-pre-buscar/', methods=["GET", "POST"])
+def vehicle_pre_buscar():
+    global vehiculo_pre_buscar
+    form_data = request.form
+    #   traemos los datos del formulario
+    parametro = form_data.get('parametro')
+    vehiculo_pre_buscar = parametro
+    return redirect(url_for('vehiculos_buscar_submit_form'))
 
-
+@app.route('/vehiculos-buscar-submit-form', methods=["GET", "POST"])
+def vehiculos_buscar_submit_form(): 
+    with open('vehiculos.json', 'r') as file:
+        vehiculos = json.load(file)
+    #   cargamos los datos de json en memoria
+    
 
 ################################################################################
 ################################################################################
