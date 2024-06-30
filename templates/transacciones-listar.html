@@ -1,0 +1,45 @@
+{% extends "base.html" %}
+
+{% block title %}
+Listado de Transacciones
+{% endblock %}
+
+{% block content %}
+<header>
+    <h1>{{ lista_listar[0] }}</h1>
+    <h2>{{ lista_listar[1] }}</h2>
+</header>
+<h3>{{ lista_listar[2] }}</h3>
+<main>
+    <h1>Listado de Transacciones</h1>
+    <table border="1">
+    <thead> 
+        <tr>
+            <th>ID Transacción</th>
+            <th>ID Vehículo</th>
+            <th>ID Cliente</th>
+            <th>Transacción</th>
+            <th>Fecha</th>
+            <th>Monto</th>
+            <th>Observaciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for transaccion in transacciones %}
+        <tr>
+            <td>{{ transaccion.item_id }}</td>
+            <td>{{ transaccion.id_vehiculo }}</td>
+            <td>{{ transaccion.id_cliente }}</td>
+            <td>{{ transaccion.tipo_transaccion }}</td>
+            <td>{{ transaccion.fecha }}</td>
+            <td>{{ transaccion.monto }}</td>
+            <td>{{ transaccion.observaciones }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+    </table>
+    <form action="http://127.0.0.1:5000/transacciones" method="POST">
+        <button type="submit">{{ lista_listar[4] }}</button>
+    </form>
+</main>
+{% endblock %}

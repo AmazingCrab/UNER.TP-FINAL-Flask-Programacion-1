@@ -2,10 +2,12 @@ from flask import Flask, render_template, request, url_for, redirect
 import requests
 import json
 
+
 app = Flask(__name__, template_folder="templates",static_folder='../static')
 app.config['FLASK_SKIP_CSRF'] = True
 app.config["STATIC_FOLDER"] = "static"
 app.config["STATIC_URL_PATH"] = "/static"
+
 
 
 # Abrir y cargar el archivo clientes.json
@@ -15,27 +17,14 @@ with open('clientes.json', 'r') as clientes_file:
 # Abrir y cargar el archivo ventas.json
 with open('vehiculos.json', 'r') as vehiculos_file:
     vehiculos = json.load(vehiculos_file)
-################################################################################
-################################################################################
-##############
-##########      #      ######    #####  ####  ########
-######        ####     #####    ####   ###########
-###         ########    ##########    #######  #######
 
-
-    
-
-
-
-
+# Abrir y cargar el archivo transacciones.json
+#with open('transaciones.json', 'r') as transaciones_file:
+ #       transacciones = json.load(transacciones_file)
 
 ################################################################################
+# Comenzo flujo del programa
 ################################################################################
-##############
-##########      #      ######    #####  ####  ########
-######        ####     #####    ####   ###########
-###         ########    ##########    #######  #######
-
 
 @app.route('/', methods=['GET', 'POST'])
 def index():   
@@ -365,9 +354,92 @@ def transacciones():
     'Bienvenido!'] #h2
 
 
-    opcion_menu_transacciones = request.form.get('opcion')
+   # opcion_menu_transacciones = request.form.get('opcion')
 
     return render_template('transacciones.html', **{'lista_menu': lista_menu})
+@app.route('/transaccion-crear', methods=['GET', 'POST'])
+def transaccion_crear():
+    if request.method == 'POST':
+        try:
+            # Verificamos que los campos existan en el formulario
+            if 'id_vehiculo' not in request.form or 'id_cliente' not in request.form or 'tipo_transaccion' not in request.form or 'fecha' not in request.form or 'monto' not in request.form or 'observaciones' not in request.form:
+                return "Error: Faltan datos en el formulario", 400
+            
+            id_vehiculo = int(request.form['id_vehiculo'])
+            id_cliente = int(request.form['id_cliente'])
+            tipo_transaccion = request.form['tipo_transaccion'].capitalize().strip()
+            fecha = request.form['fecha'].strip()
+            monto = float(request.form['monto'])
+            observaciones = request.form['observaciones'].capitalize()
+        except ValueError:
+            return render_template('transaccion-crear.html', error="Los datos ingresados deben ser valores numéricos")
+
+        # Abrir y cargar el archivo transacciones.json
+        with open('transacciones.json', 'r') as file:
+            transacciones = json.load(file)
+        
+        item_id = len(transacciones) + 1
+        nueva_transaccion = {
+            'item_id': item_id,
+            'id_vehiculo': id_vehiculo,
+            'id_cliente': id_cliente,
+            'tipo_transaccion': tipo_transaccion,
+            'fecha': fecha,
+            'monto': monto,
+            'observaciones': observaciones
+        }
+        transacciones.append(nueva_transaccion)
+
+        # Guardar en el archivo JSON
+        with open('transacciones.json', 'w') as file:
+            json.dump(transacciones, file, indent=4)
+
+        return redirect(url_for('listar_transacciones'))
+
+    return render_template('transaccion-crear.html')
+
+@app.route('/transacciones-listar', methods=['POST','GET'])
+def listar_transacciones():
+    
+    #   Si existe el archivo, cargamos los datos en memoria
+    with open('transacciones.json', 'r') as file:
+        transacciones = json.load(file)
+        #cargamos los datos de json en memoria
+    
+    lista_listar = [
+        'Concesionario La Ñata',  # h1
+        'Bienvenido!',  # h2
+        'Listado de Transacciones',  # h3
+        'Volver a Transacciones',
+    ] 
+    
+    return render_template('transacciones-listar.html',lista_listar=lista_listar, transacciones=transacciones)
+
+
+@app.route('/transacciones/buscar', methods=['GET', 'POST'])
+def buscar_transacciones():
+    if request.method == 'POST':
+        tipo_transaccion = request.form['tipo_transaccion']
+        criterio = request.form['criterio']
+        valor = request.form['valor']
+
+        with open('transacciones.json', 'r') as file:
+            transacciones = json.load(file)
+
+        if criterio == 'id_cliente':
+            resultados = [t for t in transacciones if t['id_cliente'] == int(valor) and t['tipo_transaccion'] == tipo_transaccion]
+        elif criterio == 'id_vehiculo':
+            resultados = [t for t in transacciones if t['id_vehiculo'] == int(valor) and t['tipo_transaccion'] == tipo_transaccion]
+        elif criterio == 'rango_fechas':
+            fecha_desde, fecha_hasta = valor.split(',')
+            resultados = [t for t in transacciones if fecha_desde <= t['fecha'] <= fecha_hasta and t['tipo_transaccion'] == tipo_transaccion]
+        else:
+            resultados = []
+
+        return render_template('resultados_busqueda.html', transacciones=resultados)
+
+    return render_template('buscar_transacciones.html')
+
 
 #################### DOLAR OKEY ####################
 @app.route('/cotizacion', methods=['GET', 'POST'])
@@ -405,3 +477,6 @@ def obtener_cotizacion_dolar():
     else:
         return [], []
 ####################################################
+
+if __name__ == '__main__':
+    app.run(debug=True)
