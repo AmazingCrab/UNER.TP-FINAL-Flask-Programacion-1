@@ -1,21 +1,65 @@
 [
     {
-      "item_id": 1,
-      "id_vehiculo": "1",
-      "id_cliente": "1",
-      "tipo_transaccion": "Venta",
-      "fecha": "2024-01-15",
-      "monto": "15000",
-      "observaciones": "Venta realizada con éxito."
+        "item_id": 1,
+        "id_vehiculo": "1",
+        "id_cliente": "1",
+        "tipo_transaccion": "Venta",
+        "fecha": "2024-01-15",
+        "monto": "15000",
+        "observaciones": "Venta realizada con \u00e9xito."
     },
     {
-      "item_id": 2,
-      "id_vehiculo": "2",
-      "id_cliente": "2",
-      "tipo_transaccion": "Compra",
-      "fecha": "2024-01-20",
-      "monto": "14000",
-      "observaciones": "Compra registrada."
+        "item_id": 2,
+        "id_vehiculo": "2",
+        "id_cliente": "2",
+        "tipo_transaccion": "Compra",
+        "fecha": "2024-01-20",
+        "monto": "14000",
+        "observaciones": "Compra registrada."
+    },
+    {
+        "item_id": 3,
+        "id_vehiculo": "3",
+        "id_cliente": "4",
+        "tipo_transaccion": "venta",
+        "fecha": "2019-01-21",
+        "monto": "999999",
+        "observaciones": "toyota camrry venta"
+    },
+    {
+        "item_id": 4,
+        "id_vehiculo": "3",
+        "id_cliente": "4",
+        "tipo_transaccion": "venta",
+        "fecha": "2019-01-21",
+        "monto": "999999",
+        "observaciones": "toyota camrry venta"
+    },
+    {
+        "item_id": 5,
+        "id_vehiculo": "3",
+        "id_cliente": "4",
+        "tipo_transaccion": "venta",
+        "fecha": "2019-01-21",
+        "monto": "999999",
+        "observaciones": "toyota camrry venta"
+    },
+    {
+        "item_id": 6,
+        "id_vehiculo": "5",
+        "id_cliente": "6",
+        "tipo_transaccion": "venta",
+        "fecha": "2019-01-1",
+        "monto": "766000",
+        "observaciones": "toyota Etios venta"
+    },
+    {
+        "item_id": 7,
+        "id_vehiculo": "5",
+        "id_cliente": "6",
+        "tipo_transaccion": "venta",
+        "fecha": "2019-01-1",
+        "monto": "766000",
+        "observaciones": "toyota Etios venta"
     }
-  ]
-  
+]

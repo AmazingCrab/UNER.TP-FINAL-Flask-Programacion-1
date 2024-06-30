@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, url_for, redirect, flash
+from datetime import datetime
 import requests
 import json
 
@@ -72,7 +73,7 @@ def vehiculos_crear():
     ]
     return render_template('vehiculos-crear.html', lista_crear=lista_crear)
 
-@app.route('/submit-c-v', methods=["POST"])
+@app.route('/submit-c-v', methods=["POST", "GET"])
 def vehiculos_crear_submit_form():
 
     with open('vehiculos.json', 'r') as file:
@@ -98,7 +99,8 @@ def vehiculos_crear_submit_form():
     with open('vehiculos.json', 'w') as file:
         json.dump(vehiculos, file, indent=4)
     print("Vehiculo creado correctamente.")
-    return redirect(url_for("vehiculos"))
+    flash("Vehiculo creado correctamente")
+    return redirect(url_for("vehiculos_crear"))
 
 
 @app.route('/vehiculos-borrar', methods=['GET', 'POST'])
@@ -225,7 +227,7 @@ def vehiculos_editar_submit_form():
     if not diccionario_a_editar:
         print("No se encontró el vehículo")
         flash("No se encontró el cliente")
-        return redirect(url_for("vehiculos"))
+        return redirect(url_for("vehiculos_editar"))
     
     item_id = parametro
 
@@ -407,6 +409,7 @@ def clientes_crear_submit_form():
     with open('clientes.json', 'w') as file:
         json.dump(clientes, file, indent=4)
     print("Cliente creado correctamente.")
+    flash('Cliente creado correctamente.')
 
     return redirect(url_for('clientes'))
 ################################################################
@@ -566,11 +569,6 @@ def clientes_editar_submit_form():
 
     return redirect(url_for('clientes_editar'))
 
-
-
-
-
-
 @app.route('/clientes_editar', methods=['GET','POST'])
 def cliente_editar():
     lista_editar = [
@@ -639,15 +637,7 @@ def clientes_editar_submit_form():
     with open('clientes.json', 'w') as file:
         json.dump(clientes, file, indent=4)
     print("Cliente editado correctamente.")
-    return redirect(url_for('clientes'))
-
-
-
-
-
-
-
-
+    return redirect(url_for('clientes_editar'))
 
 ################################################################################
 ################################################################################
@@ -658,57 +648,57 @@ def transacciones():
     '2. Listar Transacciones',
     '3. Buscar Transacción', 
     '4. Volver al Menú Principal',
-    'Menu Transacciones',
+    'Menu Transacciones', #1
     'Ir al Menú',
-    'Concesionario La Ñata',#h1
+    'Concesionario La Ñata',#h2
     'Bienvenido!'] #h2
-
 
    # opcion_menu_transacciones = request.form.get('opcion')
 
     return render_template('transacciones.html', **{'lista_menu': lista_menu})
-@app.route('/transaccion-crear', methods=['GET', 'POST'])
+
+@app.route('/transacciones-crear', methods=['GET', 'POST'])
 def transaccion_crear():
-    if request.method == 'POST':
-        try:
-            # Verificamos que los campos existan en el formulario
-            if 'id_vehiculo' not in request.form or 'id_cliente' not in request.form or 'tipo_transaccion' not in request.form or 'fecha' not in request.form or 'monto' not in request.form or 'observaciones' not in request.form:
-                return "Error: Faltan datos en el formulario", 400
-            
-            id_vehiculo = int(request.form['id_vehiculo'])
-            id_cliente = int(request.form['id_cliente'])
-            tipo_transaccion = request.form['tipo_transaccion'].capitalize().strip()
-            fecha = request.form['fecha'].strip()
-            monto = float(request.form['monto'])
-            observaciones = request.form['observaciones'].capitalize()
-        except ValueError:
-            return render_template('transaccion-crear.html', error="Los datos ingresados deben ser valores numéricos")
+    lista_crear = [
+        'Concesionario La Ñata',  # h1
+        'Bienvenido!',  # h2
+        'Crear Transacción',  # h3
+        'Ingrese los datos de la Transacción',  # h4
+        'Volver a Transacciones',
+    ]
+    return render_template('transacciones-crear.html',lista_crear=lista_crear)
 
-        # Abrir y cargar el archivo transacciones.json
-        with open('transacciones.json', 'r') as file:
-            transacciones = json.load(file)
-        
-        item_id = len(transacciones) + 1
-        nueva_transaccion = {
-            'item_id': item_id,
-            'id_vehiculo': id_vehiculo,
-            'id_cliente': id_cliente,
-            'tipo_transaccion': tipo_transaccion,
-            'fecha': fecha,
-            'monto': monto,
-            'observaciones': observaciones
-        }
-        transacciones.append(nueva_transaccion)
+@app.route('/submit-c-t', methods=['POST','GET'])
+def transaccion_crear_submit_form():
 
-        # Guardar en el archivo JSON
-        with open('transacciones.json', 'w') as file:
-            json.dump(transacciones, file, indent=4)
+    with open ('transacciones.json', 'r') as file:
+        transacciones = json.load(file)
+        print(transacciones)
+    
+    form_data = request.form
 
-        return redirect(url_for('listar_transacciones'))
+    item_id = len(transacciones) + 1
 
-    return render_template('transaccion-crear.html')
+    nueva_transaccion = {
+        'item_id': item_id,
+        'id_vehiculo': form_data.get('id_vehiculo'),
+        'id_cliente': form_data.get('id_cliente'),
+        'tipo_transaccion': form_data.get('tipo_transaccion'),
+        'fecha': form_data.get('fecha'),
+        'monto': form_data.get('monto'),
+        'observaciones': form_data.get('observaciones'),
+    }
+    transacciones.append(nueva_transaccion)
+    with open('transacciones.json', 'w') as file:
+        json.dump(transacciones, file, indent=4)
+    print("Transacción creada correctamente.")
+    flash('Transacción creada correctamente.')
 
-@app.route('/transacciones-listar', methods=['POST','GET'])
+    return redirect(url_for('transacciones-crear'))
+
+
+
+@app.route('/transacciones-listar', methods=['GET','POST'])
 def listar_transacciones():
     
     #   Si existe el archivo, cargamos los datos en memoria
@@ -764,11 +754,14 @@ def cotizacion_ppal():
     'Concesionario La Ñata',#h1
     'Bienvenido!'] #h2 
 
+    now = datetime.now()
+    formatted_date = now.strftime("%Y-%m-%d %H:%M")
+
     headers = ['Dolar Promedio','Dolar Venta','Dolar Compra']
     fields1 = [blue_string]  # Dólar Blue
     fields2 = [oficial_string]  # Dólar Oficial
         
-    return render_template('cotizacion.html', **{'lista_menu': lista_menu, 'headers': headers, 'fields1':fields1, 'fields2':fields2})
+    return render_template('cotizacion.html', **{'lista_menu': lista_menu, 'headers': headers, 'fields1':fields1, 'fields2':fields2, 'formatted_date':formatted_date})
 
         #Integrar la plantilla cotizacion.html proporcionada
 def obtener_cotizacion_dolar():

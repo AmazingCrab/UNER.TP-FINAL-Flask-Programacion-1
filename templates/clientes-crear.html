@@ -12,7 +12,7 @@ Crear Clientes
     <h3>{{lista_crear[2]}}</h3>
 <main>
     <h4>{{lista_crear[3]}}</h4>
-<form action="/submit-c-c" method="POST" onsubmit="alert('Cliente Creado Exitosamente');"><br>
+<form action="/submit-c-c" method="POST" ><br>
     <label for="nombre">Nombre:</label><br>
     <input type="text" id="nombre" name="nombre" required><br>
     <label for="apellido">Apellido:</label><br>
@@ -27,6 +27,15 @@ Crear Clientes
     <input type="correo_electronico" id="correo_electronico" name="correo_electronico" required><br>
     <button type="submit">Crear Cliente</button><br>
 </form>
+{% with messages = get_flashed_messages() %}
+{% if messages %}
+    <ul class="flashes">
+        {% for message in messages %}
+            <li>{{ message }}</li>
+        {% endfor %}
+    </ul>
+{% endif %}
+{% endwith %}
 <form action="http://127.0.0.1:5000/vehiculos" method="POST" action="request">
     <button type="submit">{{lista_crear[4]}}</button>
 </form>  
