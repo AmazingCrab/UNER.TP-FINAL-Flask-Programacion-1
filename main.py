@@ -275,8 +275,6 @@ def vehiculos_listar():
         'Volver a Vehículos',  # h5
     ]
 
-
-
     return render_template('vehiculos-listar.html', lista_listar=lista_listar, vehiculos= vehiculos)
 
 
