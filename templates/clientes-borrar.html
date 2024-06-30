@@ -1,7 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-Borrar Vehículos
+Borrar Clientes
 {% endblock %}
 
 {% block content %}
@@ -12,15 +12,15 @@ Borrar Vehículos
     <h3>{{lista_borrar[2]}}</h3>
 <main>
     <h4>{{lista_borrar[3]}}</h4>
-    <form action="/submit-b-v" method="POST">
-        <label for="patente"></label><br>
-        <input placeholder = "Ingresa el ID de Vehículo" type="text" id="item_id" name="item_id"><br>
+    <form action="/submit-b-c" method="POST" >
         <label for="submit"></label><br>
-        <input placeholder = "Ingresa la Patente" type="text" id="patente" name="patente"><br>
-        <label for="item_id"></label><br>
+        <input placeholder = "Ingresa el ID de Cliente" type="text" id="item_id" name="item_id"><br>
+        <label for="submit"></label><br>
+        <input placeholder = "Ingresa el documento" type="text" id="documento" name="documento"><br>
+        <label for="submit"></label><br>
         <input type="submit" value="Borrar Vehículo" name="submit"><br>
     </form>
-    <form action="http://127.0.0.1:5000/vehiculos" method="POST" action="request">
+    <form action="http://127.0.0.1:5000/clientes" method="POST" action="request">
         {% with messages = get_flashed_messages() %}
         {% if messages %}
             <ul class="flashes">
@@ -29,7 +29,7 @@ Borrar Vehículos
                 {% endfor %}
             </ul>
         {% endif %}
-    {% endwith %}    
+    {% endwith %}
         <button type="submit">{{lista_borrar[4]}}</button>
     </form>  
 </main>

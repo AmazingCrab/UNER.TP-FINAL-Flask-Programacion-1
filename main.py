@@ -1,4 +1,4 @@
-from flask import Flask, render_template, request, url_for, redirect
+from flask import Flask, render_template, request, url_for, redirect, flash
 import requests
 import json
 
@@ -7,7 +7,7 @@ app = Flask(__name__, template_folder="templates",static_folder='../static')
 app.config['FLASK_SKIP_CSRF'] = True
 app.config["STATIC_FOLDER"] = "static"
 app.config["STATIC_URL_PATH"] = "/static"
-
+app.secret_key = b'_5#y2L"F4Q8z\n\xec]/'
 
 
 # Abrir y cargar el archivo clientes.json
@@ -79,7 +79,7 @@ def vehiculos_crear_submit_form():
         vehiculos = json.load(file)
         
     form_data = request.form
-    # Get the form data
+
     item_id = len(vehiculos) + 1
 
     nuevo_vehiculo = {
@@ -132,16 +132,32 @@ def vehiculos_borrar_submit_form():
     else:
         parametro = 'patente'
         data_a_buscar = patente
-    
+      
+    button_label = request.form.get('submit')
+
+    messsage="?"
+
     for vehiculo in vehiculos:
         if vehiculo[parametro] == data_a_buscar:
             vehiculos.remove(vehiculo)
+            messsage ='borrado'
+
             break  # Exit the loop after removing the vehicle
+
+
+    if messsage == 'borrado':
+        print("Cliente eliminado correctamente.")
+        flash("Cliente eliminado correctamente.")
+    else:
+        print("No se encontró el cliente")
+        flash("No se encontró el cliente")
+
     
     with open('vehiculos.json', 'w') as file:
         json.dump(vehiculos, file, indent=4)
-    print("Vehiculo eliminado correctamente.")
-    return redirect(url_for("vehiculos"))
+        
+
+    return redirect(url_for("vehiculos_borrar"))
 
 @app.route('/vehiculos-pre-editar', methods=['POST','GET'])
 def vehiculos_pre_editar():
@@ -182,6 +198,7 @@ def vehiculos_editar():
 
 @app.route('/submit-e-v', methods=['GET', 'POST'])
 def vehiculos_editar_submit_form():
+
     with open('vehiculos.json', 'r') as file:
         vehiculos = json.load(file)
     #   cargamos los datos de json en memoria
@@ -191,19 +208,7 @@ def vehiculos_editar_submit_form():
 
     parametro = vehiculo_pre_editar # Obtenemos el parámetro del formulario
 
-    if parametro.isdigit():
-        parametro = int(parametro)
-        editar_por = 'item_id'
-    else:
-        parametro = vehiculo_pre_editar
-        editar_por = 'patente'
-
-    diccionario_a_editar = None
-
-    for registro in vehiculos:
-        if registro.get(editar_por) == parametro:
-            diccionario_a_editar=registro
-            break
+    parametro = vehiculo_pre_editar 
     
     if not diccionario_a_editar:
         print("No se encontró el vehículo")
@@ -278,7 +283,6 @@ def vehiculo_pre_buscar():
     ]
     return render_template('vehiculos-pre-buscar.html', lista_pre_buscar=lista_pre_buscar)
 
-
 @app.route("/vehiculos-pre-b-v", methods=["GET", "POST"])
 def vehiculos_pre_b_submit_form():
     global vehiculo_pre_buscar
@@ -289,7 +293,6 @@ def vehiculos_pre_b_submit_form():
     vehiculo_pre_buscar = parametro
 
     return redirect(url_for('vehiculos_buscar'))
-
 
 @app.route('/vehiculos-buscar-submit-form', methods=["GET", "POST"])
 def vehiculos_buscar_submit_form(): 
@@ -341,6 +344,244 @@ def clientes():
 
     return render_template('clientes.html', **{'lista_menu': lista_menu})
 
+@app.route("/clientes-listar", methods=["GET", "POST"])
+def clientes_listar():
+    
+    with open('clientes.json', 'r') as file:
+        clientes = json.load(file)
+    #   cargamos los datos de json en memoria
+    
+    lista_listar = [
+        'Concesionario La Ñata',  # h1
+        'Bienvenido!',  # h2
+        'Listado de Clientes',  # h3
+        'Volver a Clientes',
+    ]
+
+    return render_template('clientes-listar.html', lista_listar=lista_listar, clientes = clientes)
+@app.route('/clientes-crear', methods=['GET', 'POST'])
+def clientes_crear():
+    lista_crear = [
+        'Concesionario La Ñata',  # h1
+        'Bienvenido!',  # h2
+        'Crear Cliente',  # h3
+        'Ingrese los datos del Cliente',  # h4
+        'Volver a Clientes',
+    ]
+    return render_template('clientes-crear.html', lista_crear=lista_crear)
+
+@app.route('/submit-c-c', methods=['POST'])
+def clientes_crear_submit_form():
+
+    with open('clientes.json', 'r') as file:
+        clientes = json.load(file)
+
+    form_data = request.form
+
+    item_id = len(clientes) + 1
+
+    nuevo_cliente = {
+    'item_id': item_id,
+    'nombre': form_data.get('nombre'),
+    'apellido': form_data.get('apellido'),
+    'documento': form_data.get('documento'),
+    'direccion': form_data.get('direccion'),
+    'telefono': form_data.get('telefono'),
+    'correo_electronico': form_data.get('correo_electronico'),
+    }
+
+    clientes.append(nuevo_cliente)
+    with open('clientes.json', 'w') as file:
+        json.dump(clientes, file, indent=4)
+    print("Cliente creado correctamente.")
+
+    return redirect(url_for('clientes'))
+################################################################
+@app.route('/clientes-borrar', methods=['GET','POST'])
+def clientes_borrar():
+    lista_borrar = [
+        'Concesionario La Ñata',  # h1
+        'Bienvenido!',  # h2
+        'Eliminar Cliente',  # h3
+        'Ingrese el ID del Cliente o Documento que desea eliminar',  # h4
+        'Volver a Clientes',
+    ]
+    return render_template('clientes-borrar.html', lista_borrar=lista_borrar)
+
+@app.route('/submit-b-c', methods=['POST'])
+def clientes_borrar_submit_form():
+    documento = None
+    with open('clientes.json', 'r') as file:
+        clientes = json.load(file)
+
+        form_data = request.form
+    
+    try:
+        item_id = int(form_data.get('item_id'))
+    except ValueError:
+        item_id = 0
+        documento = form_data.get('documento')
+
+    if item_id !=0:
+        parametro = 'item_id'
+        data_a_buscar = item_id
+    else:
+        parametro = 'documento'
+        data_a_buscar = documento
+
+    button_label = request.form.get('submit')
+
+    messsage="?"
+
+    for cliente in clientes:
+        if cliente[parametro] == data_a_buscar:
+            clientes.remove(cliente)
+            messsage ='borrado'
+            break
+
+    if messsage == 'borrado':
+        print("Cliente eliminado correctamente.")
+        flash("Cliente eliminado correctamente.")
+    else:
+        print("No se encontró el cliente")
+        flash("No se encontró el cliente")
+
+    with open('clientes.json', 'w') as file:
+        json.dump(clientes, file, indent=4)
+        
+
+    return redirect(url_for('clientes_borrar'))
+
+################################################################
+@app.route('/clientes-pre-edit/', methods=['POST', 'GET'])
+def clientes_pre_editar():
+    lista_pre_editar = [
+        'Concesionario La Ñata',  # h1
+        'Bienvenido!',  # h2
+        'Editar Cliente',  # h3
+        'Ingrese el ID del Cliente o Documento que desea editar',  # h4
+        'Volver a Clientes',
+    ]
+    return render_template('clientes-pre-editar.html', lista_pre_editar=lista_pre_editar)
+
+@app.route('/submit-pre-e-c', methods = ['POST', 'GET'])
+def clientes_pre_editar_submit_form():
+    global clientt_pre_editar
+
+    form_data = request.form
+    parametro = form_data.get('parametro')
+    cliente_pre_editar = parametro
+    print(vehiculo_pre_buscar_editar)
+
+    return redirect(url_for('clientes_editar'))
+
+@app.route('/clientes_editar/', methods=['GET', 'POST'])
+def clientes_editar():
+    lista_editar = [
+        'Concesionario La Ñata',  # h1
+        'Bienvenido!',  # h2
+        'Editar Cliente',  # h3
+        'Ingrese los datos del Cliente que deseee editar',  # h4
+        'Volver a Clientes',
+    ]
+    return render_template('clientes-editar.html', lista_editar=lista_editar)
+
+@app.route('/submit-e-c', methods=['GET','POST'])
+def clientes_editar_submit_form():
+
+    with open('clientes.json', 'r') as file:
+        clientes = json.load(file)
+
+    form_data = request.form
+
+    parametro = vehiculo_pre_editar 
+
+    vehiculo_pre_editar = parametro
+
+    print(vehiculo_pre_buscar_pre)
+
+    return redirect(url_for('clientes_editar'))
+
+@app.route('/clientes_editar', methods=['GET','POST'])
+def cliente_editar():
+    lista_editar = [
+        'Concesionario La Ñata',  # h1
+        'Bienvenido!',  # h2
+        'Editar Cliente',  # h3
+        'Ingrese los datos del Cliente',  # h4
+        'Volver a Clientes',
+    ]
+    return render_template('clientes-editar.html', lista_editar=lista_editar)
+
+#@app.route('/submit-e-c', methods=['GET','POST'])
+
+def clientes_editar_submit_form():
+    with open('clientes.json, r') as f:
+        clientes = json.load(f)
+
+    parametro = cliente_pre_editar
+
+    if parametro.isdigit():
+        parametro = 'item_id'
+    else:
+        parametro = clientes_pre_editar
+        editar_por = 'patente'
+
+    diccionario_a_editar = None
+
+    for registro in clientes:
+        if registro.get(editar_por) == parametro:
+            diccionario_a_editar=registro
+            break
+
+    if not diccionario_a_editar:
+        print('No se encontró el registro')
+        return redirect(url_for('clientes'))
+    
+    item_id = parametro
+
+    if editar_portal == 'patente':
+        item_id = diccionario_a_editar.get['item_id']
+    
+    nombre = request.form.get('nombre') or diccionario_a_editar.get['nombre']
+    apellido = request.form.get('apellido') or diccionario_a_editar.get['apellido']
+    documento = request.form.get('documento') or diccionario_a_editar.get['documento']
+    direccion = request.form.get('direccion') or diccionario_a_editar.get['direccion']
+    telefono = request.form.get('telefono') or diccionario_a_editar.get['telefono']
+    correo_electronico = request.form.get('correo_electronico') or diccionario_a_editar.get['correo_electronico']
+
+    cliente_form = {
+        'item_id': item_id,
+        'nombre': nombre,
+        'apellido': apellido,
+        'documento': documento,
+        'direccion': direccion,
+        'telefono': telefono,
+        'correo_electronico': correo_electronico,
+    }
+
+    print(cliente_form)
+
+    for cliente in clientes:
+        if cliente[editar_por] == parametro:
+            vehiculo.update(cliente_form)
+            break
+
+    with open('clientes.json', 'w') as file:
+        json.dump(clientes, file, indent=4)
+    print("Cliente editado correctamente.")
+    return redirect(url_for('clientes'))
+
+
+
+
+
+
+
+
+
+################################################################################
+################################################################################
 @app.route('/transacciones', methods=['GET', 'POST'])
 def transacciones():
     lista_menu = [

@@ -1,1 +1,38 @@
-[]
+[
+    {
+        "item_id": 1,
+        "nombre": "Carlos",
+        "apellido": "Castillo",
+        "documento": "2959595",
+        "direccion": "casa blanca 215",
+        "telefono": "11112312312",
+        "correo_electronico": "eawesd@gmail.com.ar"
+    },
+    {
+        "item_id": 2,
+        "nombre": "Pedro",
+        "apellido": "Castillo",
+        "documento": "2959595",
+        "direccion": "casa blanca 215",
+        "telefono": "11112312312",
+        "correo_electronico": "eawesd@gmail.com.ar"
+    },
+    {
+        "item_id": 3,
+        "nombre": "Pedro ",
+        "apellido": "Sanchez",
+        "documento": "29434534",
+        "direccion": "Pedro Lopez 192",
+        "telefono": "12312313",
+        "correo_electronico": "pl @gmail.com"
+    },
+    {
+        "item_id": 4,
+        "nombre": "Pedro",
+        "apellido": "sela",
+        "documento": "29213213",
+        "direccion": "Jose Hernandez 232",
+        "telefono": "1123213123",
+        "correo_electronico": "Pedro@gmail.com"
+    }
+]
