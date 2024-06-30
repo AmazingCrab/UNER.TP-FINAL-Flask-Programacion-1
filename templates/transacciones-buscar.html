@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Buscar Transacciones</title>
+</head>
+<body>
+    <h1>Buscar Transacciones</h1>
+    <form method="POST">
+        <label for="tipo_transaccion">Tipo de Transacción:</label>
+        <select id="tipo_transaccion" name="tipo_transaccion" required>
+            <option value="Compra">Compra</option>
+            <option value="Venta">Venta</option>
+        </select><br>
+        
+        <label for="criterio">Criterio de Búsqueda:</label>
+        <select id="criterio" name="criterio" required>
+            <option value="id_cliente">ID Cliente</option>
+            <option value="id_vehiculo">ID Vehículo</option>
+            <option value="rango_fechas">Rango de Fechas (YYYY-MM-DD,YYYY-MM-DD)</option>
+        </select><br>
+        
+        <label for="valor">Valor:</label>
+        <input type="text" id="valor" name="valor" required><br>
+        
+        <button type="submit">Buscar</button>
+    </form>
+</body>
+</html>

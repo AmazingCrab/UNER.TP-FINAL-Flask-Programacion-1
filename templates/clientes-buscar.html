@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% block content %}
+<h2>Buscar Clientes</h2>
+<form method="POST">
+    <label for="parametro">Buscar por:</label>
+    <select id="parametro" name="parametro" required>
+        <option value="documento">Documento</option>
+        <option value="apellido">Apellido</option>
+        <option value="nombre">Nombre</option>
+    </select>
+    <label for="valor">Valor:</label>
+    <input type="text" id="valor" name="valor" required>
+    <button type="submit">Buscar</button>
+</form>
+
+{% if resultados %}
+    <h3>Resultados</h3>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nombre</th>
+                <th>Documento</th>
+                <th>Apellido</th>
+                <th>Dirección</th>
+                <th>Celular</th>
+                <th>Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for cliente in resultados %}
+            <tr>
+                <td>{{ cliente.id }}</td>
+                <td>{{ cliente.nombre }}</td>
+                <td>{{ cliente.documento }}</td>
+                <td>{{ cliente.apellido }}</td>
+                <td>{{ cliente.direccion }}</td>
+                <td>{{ cliente.celular }}</td>
+                <td>{{ cliente.email }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+{% endif %}
+{% endblock %}

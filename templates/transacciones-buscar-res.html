@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Resultados de Búsqueda</title>
+</head>
+<body>
+    <h1>Resultados de Búsqueda</h1>
+    {% if transacciones %}
+    <table border="1">
+        <tr>
+            <th>ID Transacción</th>
+            <th>ID Vehículo</th>
+            <th>ID Cliente</th>
+            <th>Transacción</th>
+            <th>Fecha</th>
+            <th>Monto</th>
+            <th>Observaciones</th>
+        </tr>
+        {% for transaccion in transacciones %}
+        <tr>
+            <td>{{ transaccion.item_id }}</td>
+            <td>{{ transaccion.id_vehiculo }}</td>
+            <td>{{ transaccion.id_cliente }}</td>
+            <td>{{ transaccion.tipo_transaccion }}</td>
+            <td>{{ transaccion.fecha }}</td>
+            <td>{{ transaccion.monto }}</td>
+            <td>{{ transaccion.observaciones }}</td>
+        </tr>
+        {% endfor %}
+    </table>
+    {% else %}
+    <p>No se encontraron transacciones</p>
+    {% endif %}
+</body>
+</html>
