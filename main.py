@@ -223,6 +223,10 @@ def vehiculos_editar_submit_form():
     
     item_id = parametro
 
+    if editar_por == 'patente':
+        item_id = diccionario_a_editar['item_id']
+    
+
     patente =  form_data.get('patente') or diccionario_a_editar['patente']
     marca = form_data.get('marca') or diccionario_a_editar['marca']
     modelo = form_data.get('modelo') or diccionario_a_editar['modelo']
@@ -275,26 +279,29 @@ def vehiculos_listar():
 
     return render_template('vehiculos-listar.html', lista_listar=lista_listar, vehiculos= vehiculos)
 
-
-@app.route("/vehiculos-buscar", methods=["GET", "POST"])
-def vehiculos_buscar():
-    lista_buscar = [
+@app.route('/vehiculos-pre-buscar/', methods=["GET", "POST"])
+def vehiculo_pre_buscar():
+    lista_pre_buscar = [
         'Concesionario La Ñata',  # h1
         'Bienvenido!',  # h2
         'Buscar Vehículo',  # h3
         'Ingrese el ID o la Patente del Vehículo que desea buscar', # h4
         'Volver a Vehículos',
     ]
-    return render_template('vehiculos-buscar.html', lista_buscar=lista_buscar)
+    return render_template('vehiculos-pre-buscar.html', lista_pre_buscar=lista_pre_buscar)
 
-@app.route('/vehiculos-pre-buscar/', methods=["GET", "POST"])
-def vehicle_pre_buscar():
+
+@app.route("/vehiculos-pre-b-v", methods=["GET", "POST"])
+def vehiculos_pre_b_submit_form():
     global vehiculo_pre_buscar
+
     form_data = request.form
     #   traemos los datos del formulario
     parametro = form_data.get('parametro')
     vehiculo_pre_buscar = parametro
-    return redirect(url_for('vehiculos_buscar_submit_form'))
+
+    return redirect(url_for('vehiculos_buscar'))
+
 
 @app.route('/vehiculos-buscar-submit-form', methods=["GET", "POST"])
 def vehiculos_buscar_submit_form(): 

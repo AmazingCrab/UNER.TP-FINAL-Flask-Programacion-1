@@ -48,7 +48,7 @@
         "estado": "Reservado"
     },
     {
-        "item_id": "GIT 777",
+        "item_id": 6,
         "patente": "GIT 777",
         "marca": "Kawasaki",
         "modelo": "Ninja",
@@ -57,6 +57,6 @@
         "kilometraje": "600000",
         "precio_compra": "8000",
         "precio_venta": "9000",
-        "estado": "Vendido"
+        "estado": "Disponible"
     }
 ]
