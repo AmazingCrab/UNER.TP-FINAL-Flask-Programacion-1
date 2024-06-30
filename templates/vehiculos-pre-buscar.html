@@ -6,14 +6,15 @@ Buscador de Vehículos
 
 {% block content %}
 <header>
-    <h1>{{lista_pre_buscar[0]}}</h1>
-    <h2>{{lista_pre_buscar[1]}}</h2>
+    <h1 class="title">{{lista_pre_buscar[0]}}</h1>
+    <h2 class="title">{{lista_pre_buscar[1]}}</h2>
 </header>
-<h3>{{lista_pre_buscar[2]}}</h3>
-<h4>{{lista_pre_buscar[3]}}</h4>
+<h3 class="title">{{lista_pre_buscar[2]}}</h3>
+<h4 class="title">{{lista_pre_buscar[3]}}</h4>
 <main>
+<div id="d-grid col-9 mx-auto btn btn-outline-dark" >
 <form action="/vehiculos-pre-b-v" method="post">
-  <label for="busqueda">Buscar por:</label>
+  <label  for="busqueda">Buscar por:</label>
   <select id="busqueda" name="busqueda">
       <option value="patente">Patente</option>
       <option value="marca">Marca</option>
@@ -23,13 +24,14 @@ Buscador de Vehículos
       <option value="kilometraje">Kilometraje</option>
       <option value="precio_compra">Precio de Compra</option>
       <option value="precio_venta">Precio de Venta</option>
-      <option value="estado">Estado</option>
+      <option value="estado">Estado</option1>
     </select>
   <br>
   <label for="parametro">Parámetro de búsqueda:</label>
-  <input type="text" id="parametro" name="parametro" required>
+  <input class="d-grid col-9 mx-auto btn btn-outline-dark" type="text" id="parametro" name="parametro" required>
   <br>
-  <input type="submit" value="Buscar">
+  <input class="d-grid col-9 mx-auto btn btn-outline-dark" type="submit" value="Buscar">
 </form>
+<div>
 </main>
 {% endblock %}

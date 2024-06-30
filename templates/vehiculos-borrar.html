@@ -6,19 +6,20 @@ Borrar Vehículos
 
 {% block content %}
 <header>
-    <h1>{{lista_borrar[0]}}</h1>
-    <h2>{{lista_borrar[1]}}</h2>
+    <h1 class="title">{{lista_borrar[0]}}</h1>
+    <h2 class="title">{{lista_borrar[1]}}</h2>
 </header>
-    <h3>{{lista_borrar[2]}}</h3>
-<main>
+    <h3 class="title">{{lista_borrar[2]}}</h3>
     <h4>{{lista_borrar[3]}}</h4>
+<main>
+<nav id="d-grid col-9 mx-auto btn btn-outline-dark">    
     <form action="/submit-b-v" method="POST">
-        <label for="patente"></label><br>
-        <input placeholder = "Ingresa el ID de Vehículo" type="text" id="item_id" name="item_id"><br>
-        <label for="submit"></label><br>
-        <input placeholder = "Ingresa la Patente" type="text" id="patente" name="patente"><br>
-        <label for="item_id"></label><br>
-        <input type="submit" value="Borrar Vehículo" name="submit"><br>
+        <label for="patente"></label>
+        <input class="d-grid col-9 mx-auto btn btn-outline-dark" placeholder = "Ingresa el ID de Vehículo" type="text" id="item_id" name="item_id">
+        <label for="submit"></label>
+        <input class="d-grid col-9 mx-auto btn btn-outline-dark" placeholder = "Ingresa la Patente" type="text" id="patente" name="patente">
+        <label for="item_id"></label>
+        <input class="d-grid col-9 mx-auto btn btn-outline-dark" type="submit" value="Borrar Vehículo" name="submit">
     </form>
     <form action="http://127.0.0.1:5000/vehiculos" method="POST" action="request">
         {% with messages = get_flashed_messages() %}
@@ -30,7 +31,8 @@ Borrar Vehículos
             </ul>
         {% endif %}
     {% endwith %}    
-        <button type="submit">{{lista_borrar[4]}}</button>
-    </form>  
+        <button class="d-grid col-9 mx-auto btn btn-outline-dark" type="submit">{{lista_borrar[4]}}</button>
+    </form>
+</nav>  
 </main>
 {% endblock %}

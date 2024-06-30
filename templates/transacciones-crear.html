@@ -2,30 +2,30 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Crear Transacción</title>
+    <title class="title" >Crear Transacción</title>
 </head>
 <body>
-    <h1>Crear Transacción</h1>
+    <h1 class="title">Crear Transacción</h1>
     <form method="POST">
         <label for="id_vehiculo">ID Vehículo:</label>
-        <input type="number" id="id_vehiculo" name="id_vehiculo" required><br>
+        <input class="d-grid col-10 mx-auto btn btn-outline-dark" type="number" id="id_vehiculo" name="id_vehiculo" required><br>
         
         <label for="id_cliente">ID Cliente:</label>
-        <input type="number" id="id_cliente" name="id_cliente" required><br>
+        <input class="d-grid col-10 mx-auto btn btn-outline-dark" type="number" id="id_cliente" name="id_cliente" required><br>
         
         <label for="tipo_transaccion">Tipo de Transacción (compra o venta):</label>
-        <input type="text" id="tipo_transaccion" name="tipo_transaccion" required><br>
+        <input class="d-grid col-10 mx-auto btn btn-outline-dark" type="text" id="tipo_transaccion" name="tipo_transaccion" required><br>
         
         <label for="fecha">Fecha (YYYY-MM-DD):</label>
-        <input type="date" id="fecha" name="fecha" required><br>
+        <input class="d-grid col-10 mx-auto btn btn-outline-dark" type="date" id="fecha" name="fecha" required><br>
         
         <label for="monto">Monto:</label>
-        <input type="number" step="0.01" id="monto" name="monto" required><br>
+        <input class="d-grid col-10 mx-auto btn btn-outline-dark" type="number" step="0.01" id="monto" name="monto" required><br>
         
         <label for="observaciones">Observaciones:</label>
-        <textarea id="observaciones" name="observaciones"></textarea><br>
+        <textarea class="d-grid col-10 mx-auto btn btn-outline-dark" id="observaciones" name="observaciones"></textarea><br>
         
-        <button type="submit">Crear Transacción</button>
+        <button class="d-grid col-10 mx-auto btn btn-outline-dark" type="submit">Crear Transacción</button>
     </form>
 </body>
 </html>

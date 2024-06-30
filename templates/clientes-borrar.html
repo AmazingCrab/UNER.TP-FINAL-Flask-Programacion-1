@@ -14,11 +14,11 @@ Borrar Clientes
     <h4>{{lista_borrar[3]}}</h4>
     <form action="/submit-b-c" method="POST" >
         <label for="submit"></label><br>
-        <input placeholder = "Ingresa el ID de Cliente" type="text" id="item_id" name="item_id"><br>
+        <input class="d-grid col-9 mx-auto btn btn-outline-dark" placeholder = "Ingresa el ID de Cliente" type="text" id="item_id" name="item_id"><br>
         <label for="submit"></label><br>
-        <input placeholder = "Ingresa el documento" type="text" id="documento" name="documento"><br>
+        <input class="d-grid col-9 mx-auto btn btn-outline-dark" placeholder = "Ingresa el documento" type="text" id="documento" name="documento"><br>
         <label for="submit"></label><br>
-        <input type="submit" value="Borrar Vehículo" name="submit"><br>
+        <input class="d-grid col-9 mx-auto btn btn-outline-dark" type="submit" value="Borrar Vehículo" name="submit"><br>
     </form>
     <form action="http://127.0.0.1:5000/clientes" method="POST" action="request">
         {% with messages = get_flashed_messages() %}
@@ -30,7 +30,7 @@ Borrar Clientes
             </ul>
         {% endif %}
     {% endwith %}
-        <button type="submit">{{lista_borrar[4]}}</button>
+        <button class="d-grid col-9 mx-auto btn btn-outline-dark" type="submit">{{lista_borrar[4]}}</button>
     </form>  
 </main>
 {% endblock %}

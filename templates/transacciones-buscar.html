@@ -5,7 +5,7 @@
     <title>Buscar Transacciones</title>
 </head>
 <body>
-    <h1>Buscar Transacciones</h1>
+    <h1 class="title">Buscar Transacciones</h1>
     <form method="POST">
         <label for="tipo_transaccion">Tipo de Transacción:</label>
         <select id="tipo_transaccion" name="tipo_transaccion" required>
@@ -20,10 +20,10 @@
             <option value="rango_fechas">Rango de Fechas (YYYY-MM-DD,YYYY-MM-DD)</option>
         </select><br>
         
-        <label for="valor">Valor:</label>
-        <input type="text" id="valor" name="valor" required><br>
+        <label class="d-grid col-9 mx-auto btn btn-outline-dark" for="valor">Valor:</label>
+        <input class="d-grid col-9 mx-auto btn btn-outline-dark" type="text" id="valor" name="valor" required><br>
         
-        <button type="submit">Buscar</button>
+        <button class="d-grid col-9 mx-auto btn btn-outline-dark" type="submit">Buscar</button>
     </form>
 </body>
 </html>

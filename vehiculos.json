@@ -34,5 +34,29 @@
         "precio_compra": "8000",
         "precio_venta": "9000",
         "estado": "Disponible"
+    },
+    {
+        "item_id": 4,
+        "patente": "",
+        "marca": "",
+        "modelo": "",
+        "tipo": "",
+        "anio": "",
+        "kilometraje": "",
+        "precio_compra": "",
+        "precio_venta": "",
+        "estado": ""
+    },
+    {
+        "item_id": 5,
+        "patente": "",
+        "marca": "",
+        "modelo": "",
+        "tipo": "",
+        "anio": "",
+        "kilometraje": "",
+        "precio_compra": "",
+        "precio_venta": "",
+        "estado": ""
     }
 ]

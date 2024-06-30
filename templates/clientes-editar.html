@@ -6,28 +6,28 @@ Editar Vehículos
 
 {% block content %}
 <header>
-    <h1>{{lista_editar[0]}}</h1>
-    <h2>{{lista_editar[1]}}</h2>
+    <h1 class="title">{{lista_editar[0]}}</h1>
+    <h2 class="title">{{lista_editar[1]}}</h2>
 </header>
-    <h3>{{lista_editar[2]}}</h3>
-    <h4>{{lista_editar[3]}}</h4>
+    <h3 class="title">{{lista_editar[2]}}</h3>
+    <h4 class="title">{{lista_editar[3]}}</h4>
     <form action="/submit-e-c" method="POST" >
         <label for="nombre">Nombre:</label>
-        <input type="text" id="nombre" name="nombre" value="{{ cliente.nombre }}">
+        <input class="d-grid col-10 mx-auto btn btn-outline-dark" type="text" id="nombre" name="nombre" value="{{ cliente.nombre }}">
         <label for="documento">Documento:</label>
-        <input type="text" id="documento" name="documento" value="{{ cliente.documento }}">
+        <input class="d-grid col-10 mx-auto btn btn-outline-dark" type="text" id="documento" name="documento" value="{{ cliente.documento }}">
         <label for="apellido">Apellido:</label>
-        <input type="text" id="apellido" name="apellido" value="{{ cliente.apellido }}">
+        <input class="d-grid col-10 mx-auto btn btn-outline-dark" type="text" id="apellido" name="apellido" value="{{ cliente.apellido }}">
         <label for="direccion">Dirección:</label>
-        <input type="text" id="direccion" name="direccion" value="{{ cliente.direccion }}">
+        <input class="d-grid col-10 mx-auto btn btn-outline-dark" type="text" id="direccion" name="direccion" value="{{ cliente.direccion }}">
         <label for="celular">Teléfono:</label>
-        <input type="text" id="celular" name="celular" value="{{ cliente.celular }}">
+        <input class="d-grid col-10 mx-auto btn btn-outline-dark" type="text" id="celular" name="celular" value="{{ cliente.celular }}">
         <label for="email">Email:</label>
-        <input type="email" id="email" name="email" value="{{ cliente.email }}">
-        <button type="submit">Actualizar Cliente</button>
+        <input class="d-grid col-10 mx-auto btn btn-outline-dark" type="email" id="email" name="email" value="{{ cliente.email }}">
+        <button class="d-grid col-10 mx-auto btn btn-outline-dark" type="submit">Actualizar Cliente</button>
     </form>
     <form action="http://127.0.0.1:5000/clientes" method="POST" action="request">
-        <button type="submit">{{lista_editar[4]}}</button>
+        <button class="d-grid col-10 mx-auto btn btn-outline-dark" type="submit">{{lista_editar[4]}}</button>
     </form>
 
 

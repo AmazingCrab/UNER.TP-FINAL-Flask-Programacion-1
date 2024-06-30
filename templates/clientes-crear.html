@@ -6,29 +6,31 @@ Crear Clientes
 
 {% block content %}
 <header>
-    <h1>{{lista_crear[0]}}</h1>
-    <h2>{{lista_crear[1]}}</h2>
+    <h1 class="title"class="title" >{{lista_crear[0]}}</h1>
+    <h2 class="title">{{lista_crear[1]}}</h2>
 </header>
-    <h3>{{lista_crear[2]}}</h3>
+    <h3 class="title">{{lista_crear[2]}}</h3>
 <main>
-    <h4>{{lista_crear[3]}}</h4>
+    <h4 class="title">{{lista_crear[3]}}</h4>
+<nav id="d-grid col-9 mx-auto btn btn-outline-dark">
 <form action="/submit-c-c" method="POST" onsubmit="alert('Cliente Creado Exitosamente');"><br>
     <label for="nombre">Nombre:</label><br>
-    <input type="text" id="nombre" name="nombre" required><br>
+    <input class="d-grid col-10 mx-auto btn btn-outline-dark" type="text" id="nombre" name="nombre" required><br>
     <label for="apellido">Apellido:</label><br>
-    <input type="text" id="apellido" name="apellido" required><br>
+    <input class="d-grid col-10 mx-auto btn btn-outline-dark" type="text" id="apellido" name="apellido" required><br>
     <label for="documento">Documento:</label><br>
-    <input type="text" id="documento" name="documento" required><br>
+    <input class="d-grid col-10 mx-auto btn btn-outline-dark" type="text" id="documento" name="documento" required><br>
     <label for="direccion">Dirección:</label><br>
-    <input type="text" id="direccion" name="direccion" required><br>
+    <input class="d-grid col-10 mx-auto btn btn-outline-dark" type="text" id="direccion" name="direccion" required><br>
     <label for="celular">Teléfono:</label><br>
-    <input type="text" id="telefono" name="telefono" required><br>
+    <input class="d-grid col-10 mx-auto btn btn-outline-dark" type="text" id="telefono" name="telefono" required><br>
     <label for="correo_electronico">Email:</label><br>
-    <input type="correo_electronico" id="correo_electronico" name="correo_electronico" required><br>
-    <button type="submit">Crear Cliente</button><br>
+    <input class="d-grid col-10 mx-auto btn btn-outline-dark" type="correo_electronico" id="correo_electronico" name="correo_electronico" required><br>
+    <button class="d-grid col-10 mx-auto btn btn-outline-dark" type="submit">Crear Cliente</button><br>
 </form>
 <form action="http://127.0.0.1:5000/vehiculos" method="POST" action="request">
-    <button type="submit">{{lista_crear[4]}}</button>
-</form>  
+    <button class="d-grid col-10 mx-auto btn btn-outline-dark" type="submit">{{lista_crear[4]}}</button>
+</form>
+</nav>  
 </main>
 {% endblock %}

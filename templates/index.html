@@ -6,24 +6,27 @@ Menu Principal
 
 {% block content %}
 <header>
-    <h1>{{lista_menu[6]}}</h1>
+  <h1 class="title">{{lista_menu[8]}}</h1>
+  <h2 class="title">{{lista_menu[6]}}</h2>
 
-    <h2>{{lista_menu[7]}}</h2>
+    <h3 class="title">{{lista_menu[7]}}</h3>
 </header>
 <main>
-    <h3>{{lista_menu[5]}}</h3>
+    <h4 class="title">{{lista_menu[5]}}</h4>
     <nav>
-        <form action="http://127.0.0.1:5000/vehiculos" method="post" action="request">
-            <button type="submit">{{lista_menu[0]}}</button>
+        <form value="#38b9c2" action="http://127.0.0.1:5000/vehiculos" method="post" action="request">
+            <button class="d-grid col-10 mx-auto btn btn-outline-dark" type="submit">{{lista_menu[0]}}</button>
         </form>  
         <form action="http://127.0.0.1:5000/clientes" method="post" action="request">
-            <button type="submit">{{lista_menu[1]}}</button>  
+            <button class="d-grid col-10 mx-auto btn btn-outline-dark"  type="submit">{{lista_menu[1]}}</button>  
         </form>
         <form action="http://127.0.0.1:5000/transacciones" method="post" action="request">
-            <button type="submit">{{lista_menu[2]}}</button>  
+            <button class="d-grid col-10 mx-auto btn btn-outline-dark"  type="submit">{{lista_menu[2]}}</button>  
         </form>
-            <form action="http://127.0.0.1:5000/cotizacion"method="post" action="request">
-        <button type="submit">{{lista_menu[3]}}</button>  
+        <form action="http://127.0.0.1:5000/cotizacion"method="post" action="request">
+            <button class="d-grid col-10 mx-auto btn btn-outline-dark" type="submit">{{lista_menu[3]}}</button>  
         </form>
-    </nav> 
+    </nav>
+    
+
  </main>{% endblock %}
