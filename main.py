@@ -206,10 +206,11 @@ def vehiculos_editar_submit_form():
     if parametro.isdigit():
         parametro = int(parametro)
         editar_por = 'item_id'
+        auxiliar_var=1
     else:
         parametro = vehiculo_pre_editar
         editar_por = 'patente'
-
+        auxiliar_var=0
     diccionario_a_editar = None
 
     for registro in vehiculos:
@@ -217,20 +218,21 @@ def vehiculos_editar_submit_form():
             diccionario_a_editar=registro
             break
     
+    if not diccionario_a_editar:
+        print("No se encontró el vehículo")
+        return redirect(url_for("vehiculos"))
+    
+    item_id = parametro
 
-        item_id = parametro
-    else:
-        item_id = diccionario_a_editar('item_id')
-        
-    patente = diccionario_a_editar('patente') or form_data.get('patente')
-    marca= diccionario_a_editar['marca'] or form_data.get('marca')
-    modelo= diccionario_a_editar['modelo'] or form_data.get('modelo')
-    tipo= diccionario_a_editar['tipo']or form_data.get('tipo')
-    anio= diccionario_a_editar['anio']or (form_data.get('anio'))
-    kilometraje= diccionario_a_editar['kilometraje'] or  (form_data.get('kilometraje'))
-    precio_compra= diccionario_a_editar['precio_compra'] or (form_data.get('precio_compra'))
-    precio_venta=diccionario_a_editar['precio_venta'] or (form_data.get('precio_venta'))
-    estado= diccionario_a_editar['estado'] or form_data.get('estado')
+    patente =  form_data.get('patente') or diccionario_a_editar['patente']
+    marca = form_data.get('marca') or diccionario_a_editar['marca']
+    modelo = form_data.get('modelo') or diccionario_a_editar['modelo']
+    tipo = form_data.get('tipo') or diccionario_a_editar['tipo']
+    anio = form_data.get('anio') or diccionario_a_editar['anio']
+    kilometraje = form_data.get('kilometraje') or diccionario_a_editar['kilometraje']
+    precio_compra = form_data.get('precio_compra') or diccionario_a_editar['precio_compra']
+    precio_venta = form_data.get('precio_venta') or diccionario_a_editar['precio_venta']
+    estado = form_data.get('estado') or diccionario_a_editar['estado']
 
     vehiculo_form = {
         'item_id': item_id,
@@ -244,6 +246,8 @@ def vehiculos_editar_submit_form():
         'precio_venta': precio_venta,
         'estado': estado,
         }
+
+    print(vehiculo_form)
 
     for vehiculo in vehiculos:
         if vehiculo[editar_por] == parametro:

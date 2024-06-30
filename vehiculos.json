@@ -1,6 +1,6 @@
 [
     {
-        "item_id": 2,
+        "item_id": 1,
         "patente": "GHI789",
         "marca": "Chevrolet",
         "modelo": "Camaro",
@@ -12,7 +12,7 @@
         "estado": "Reservado"
     },
     {
-        "item_id": 4,
+        "item_id": 2,
         "patente": "BBf123",
         "marca": "TOYOTA",
         "modelo": "ETIOS",
@@ -24,8 +24,8 @@
         "estado": "Reservado"
     },
     {
-        "item_id": 5,
-        "patente": "BBf123",
+        "item_id": 3,
+        "patente": "AAf123",
         "marca": "TOYOTA",
         "modelo": "ETIOS",
         "tipo": "Sedan",
@@ -37,14 +37,37 @@
     },
     {
         "item_id": 5,
-        "patente": "AVV123",
-        "marca": "",
-        "modelo": "ADASD",
-        "tipo": "ADADS",
-        "anio": "",
-        "kilometraje:": "",
-        "precio_compra": "",
-        "precio_venta": "",
-        "estado": ""
+        "patente": "AVA123",
+        "marca": "TOYOTA",
+        "modelo": "ETIOS",
+        "tipo": "Sedan",
+        "anio": "2015-06-04",
+        "kilometraje:": "64000",
+        "precio_compra": "200000",
+        "precio_venta": "240000",
+        "estado": "Reservado"
+    },
+    {
+        "item_id": 3,
+        "patente": "GHI789",
+        "marca": "Chevrolet",
+        "modelo": "Camaro",
+        "tipo": "Deportivo",
+        "anio": "2021",
+        "kilometraje": "5000",
+        "precio_compra": "200000",
+        "precio_venta": "240000",
+        "estado": "Reservado"
+    },
+    {
+        "item_id": 3,
+        "patente": "GHI789",
+        "marca": "Chevrolet",
+        "modelo": "Camaro",
+        "tipo": "Deportivo",
+        "anio": "2021",
+        "kilometraje": "5000",
+        "precio_compra": "200000",
+        "precio_venta": "240000",
+        "estado": "Reservado"
     }
-]
