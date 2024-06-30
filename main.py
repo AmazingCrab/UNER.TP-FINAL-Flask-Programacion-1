@@ -207,11 +207,24 @@ def vehiculos_editar_submit_form():
     #cargamos la data del form
 
     parametro = vehiculo_pre_editar # Obtenemos el parámetro del formulario
-
-    parametro = vehiculo_pre_editar 
     
+    if parametro.isdigit(): #
+        parametro = int(parametro)
+        editar_por = 'item_id'
+        
+    else:
+        parametro = vehiculo_pre_editar
+        editar_por = 'patente'
+        diccionario_a_editar = None
+
+    for registro in vehiculos:
+        if registro.get(editar_por) == parametro:
+            diccionario_a_editar=registro
+            break
+
     if not diccionario_a_editar:
         print("No se encontró el vehículo")
+        flash("No se encontró el cliente")
         return redirect(url_for("vehiculos"))
     
     item_id = parametro
@@ -230,7 +243,7 @@ def vehiculos_editar_submit_form():
     precio_venta = form_data.get('precio_venta') or diccionario_a_editar['precio_venta']
     estado = form_data.get('estado') or diccionario_a_editar['estado']
 
-    vehiculo_form = {
+    cliente_form = {
         'item_id': item_id,
         'patente': patente,
         'marca': marca,
@@ -243,11 +256,11 @@ def vehiculos_editar_submit_form():
         'estado': estado,
         }
 
-    print(vehiculo_form)
+    print(cliente_form)
 
     for vehiculo in vehiculos:
         if vehiculo[editar_por] == parametro:
-            vehiculo.update(vehiculo_form)
+            vehiculo.update(cliente_form)
             break
 
     with open('vehiculos.json', 'w') as file:
@@ -453,7 +466,7 @@ def clientes_borrar_submit_form():
     return redirect(url_for('clientes_borrar'))
 
 ################################################################
-@app.route('/clientes-pre-edit/', methods=['POST', 'GET'])
+@app.route('/clientes-pre-editar', methods=['POST', 'GET'])
 def clientes_pre_editar():
     lista_pre_editar = [
         'Concesionario La Ñata',  # h1
@@ -466,16 +479,19 @@ def clientes_pre_editar():
 
 @app.route('/submit-pre-e-c', methods = ['POST', 'GET'])
 def clientes_pre_editar_submit_form():
-    global clientt_pre_editar
+    global cliente_pre_editar
 
     form_data = request.form
+    
     parametro = form_data.get('parametro')
+
     cliente_pre_editar = parametro
-    print(vehiculo_pre_buscar_editar)
+
+    print(cliente_pre_editar)
 
     return redirect(url_for('clientes_editar'))
 
-@app.route('/clientes_editar/', methods=['GET', 'POST'])
+@app.route('/clientes_editar', methods=['GET', 'POST'])
 def clientes_editar():
     lista_editar = [
         'Concesionario La Ñata',  # h1
@@ -494,13 +510,66 @@ def clientes_editar_submit_form():
 
     form_data = request.form
 
-    parametro = vehiculo_pre_editar 
+    parametro = cliente_pre_editar 
+ 
+    if parametro.isdigit(): #
+        parametro = int(parametro)
+        editar_por = 'item_id'
+        
+    else:
+        parametro = cliente_pre_editar
+        editar_por = 'patente'
+        diccionario_a_editar = None
 
-    vehiculo_pre_editar = parametro
+    for registro in clientes:
+        if registro.get(editar_por) == parametro:
+            diccionario_a_editar=registro
+            break
 
-    print(vehiculo_pre_buscar_pre)
+    if not diccionario_a_editar:
+        print("No se encontró el cliente")
+        flash("No se encontró el cliente")
+        return redirect(url_for('clientes_editar'))
+    
+    item_id = parametro
+
+    if editar_por == 'documento':
+        item_id = diccionario_a_editar['item_id']
+
+    documento = form_data.get('documento') or diccionario_a_editar['documento']
+    nombre = form_data.get('nombre') or diccionario_a_editar['nombre']
+    apellido = form_data.get('apellido') or diccionario_a_editar['apellido']
+    direccion = form_data.get('direccion') or diccionario_a_editar['direccion']
+    telefono = form_data.get('telefono') or diccionario_a_editar['telefono']
+    correo_electronico = form_data.get('correo_electronico') or diccionario_a_editar['correo_electronico']
+
+    cliente_form = {
+        'item_id': item_id,
+        'nombre': nombre,
+        'apellido': apellido,
+        'documento': documento,
+        'direccion': direccion,
+        'telefono': telefono,
+        'correo_electronico': correo_electronico,
+    }
+
+    print(cliente_form)
+
+    for cliente in clientes:
+        if cliente[editar_por] == parametro:
+            cliente.update(cliente_form)
+            break
+    
+    with open('clientes.json', 'w') as file:
+        json.dump(clientes, file, indent=4)
+        flash('Datos de cliente actualizados')
 
     return redirect(url_for('clientes_editar'))
+
+
+
+
+
 
 @app.route('/clientes_editar', methods=['GET','POST'])
 def cliente_editar():
