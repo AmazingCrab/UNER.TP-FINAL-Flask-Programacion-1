@@ -27,13 +27,13 @@ Listado de Transacciones
     <tbody>
         {% for transaccion in transacciones %}
         <tr>
-            <td>{{ transaccion.item_id }}</td>
-            <td>{{ transaccion.id_vehiculo }}</td>
-            <td>{{ transaccion.id_cliente }}</td>
-            <td>{{ transaccion.tipo_transaccion }}</td>
-            <td>{{ transaccion.fecha }}</td>
-            <td>{{ transaccion.monto }}</td>
-            <td>{{ transaccion.observaciones }}</td>
+            <td>{{ transaccion.['item_id'] }}</td>
+            <td>{{ transaccion.['id_vehiculo'] }}</td>
+            <td>{{ transaccion.['id_cliente'] }}</td>
+            <td>{{ transaccion.['tipo_transaccion'] }}</td>
+            <td>{{ transaccion.['fecha'] }}</td>
+            <td>{{ transaccion.['monto'] }}</td>
+            <td>{{ transaccion.['observaciones'] }}</td>
         </tr>
         {% endfor %}
     </tbody>

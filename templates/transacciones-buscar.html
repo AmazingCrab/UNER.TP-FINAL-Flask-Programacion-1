@@ -1,29 +1,40 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Buscar Transacciones</title>
-</head>
-<body>
-    <h1>Buscar Transacciones</h1>
-    <form method="POST">
-        <label for="tipo_transaccion">Tipo de Transacción:</label>
-        <select id="tipo_transaccion" name="tipo_transaccion" required>
-            <option value="Compra">Compra</option>
-            <option value="Venta">Venta</option>
-        </select><br>
-        
-        <label for="criterio">Criterio de Búsqueda:</label>
-        <select id="criterio" name="criterio" required>
-            <option value="id_cliente">ID Cliente</option>
-            <option value="id_vehiculo">ID Vehículo</option>
-            <option value="rango_fechas">Rango de Fechas (YYYY-MM-DD,YYYY-MM-DD)</option>
-        </select><br>
-        
-        <label for="valor">Valor:</label>
-        <input type="text" id="valor" name="valor" required><br>
-        
-        <button type="submit">Buscar</button>
+{% block content %}
+<header>
+    <h1>{{ lista_listar[0] }}</h1>
+    <h2>{{ lista_listar[1] }}</h2>
+</header>
+<main>
+    <h3>{{ lista_listar[2] }}</h3>
+    <h1>Listado de Vehículos</h1>
+    <table>
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Patente</th>
+                <th>Marca</th>
+                <th>Modelo</th>
+                <th>Tipo</th>
+                <th>Año</th>
+                <th>Kilometraje</th>
+                <th>Precio de Compra</th>
+                <th>Precio de Venta</th>
+                <th>Estado</th>
+                <th>Acciones</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for vehiculo in vehiculos %}
+            <tr>
+                {% for key, value in vehiculo.items() %}
+                <td>{{ value }}</td>
+                {% endfor %}
+                <td><a href="http://127.0.0.1:5000/vehiculos-pre-editar">Editar</a></td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+    <form action="http://127.0.0.1:5000/vehiculos" method="POST">
+        <button type="submit">{{ lista_listar[4] }}</button>
     </form>
-</body>
-</html>
+</main>
+{% endblock %}

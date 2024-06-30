@@ -310,6 +310,7 @@ def vehiculos_pre_b_submit_form():
     parametro_vehiculo = form_data.get('parametro_vehiculo')
     campo_vehiculo = form_data.get('campo_vehiculo')
 
+
     for vehiculo in vehiculos:
         if vehiculo.get('campo_vehiculo') == parametro_vehiculo:
             dic_busqueda = vehiculo
@@ -320,7 +321,7 @@ def vehiculos_pre_b_submit_form():
 @app.route("/vehiculos-buscar", methods=["GET", "POST"])
 def vehiculos_buscar():
    
-    dic_busqueda= vehiculos
+    
     #   cargamos los datos de json en memoria
     
     lista_buscar = [
@@ -330,7 +331,7 @@ def vehiculos_buscar():
         'Volver a Vehículos',
     ]
 
-    return render_template('vehiculos-buscar.html', lista_buscar=lista_buscar, vehiculos=vehiculos)
+    return render_template('vehiculos-buscar.html',dic_busqueda=dic_busqueda)
 
 
 
