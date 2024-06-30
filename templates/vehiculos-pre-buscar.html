@@ -1,17 +1,7 @@
 {% extends "base.html" %}
 
 {% block title %}
-Buscar Vehículos
-{% endblock %}
-
-{% block head %}
-<script>
-    function showAlert() {
-        var patente = document.getElementById('patente').value;
-        var selection = document.querySelector('input[name="selection"]:checked').value;
-        alert('Guardamos tu selección: ' + patente + '\nOpción seleccionada: ' + selection);
-    }
-</script>
+Buscador de Vehículos
 {% endblock %}
 
 {% block content %}
@@ -21,12 +11,25 @@ Buscar Vehículos
 </header>
 <h3>{{lista_pre_buscar[2]}}</h3>
 <h4>{{lista_pre_buscar[3]}}</h4>
-<form action="/submit-pre-b-v" method="POST">
-    <div>
-        <label for="parametro"></label><br>
-        <input placeholder = "Ingresa ID ó Patente" type="text" id="parametro" name="parametro"><br>
+<main>
+<form action="/vehiculos-pre-b-v" method="post">
+  <label for="busqueda">Buscar por:</label>
+  <select id="busqueda" name="busqueda">
+      <option value="patente">Patente</option>
+      <option value="marca">Marca</option>
+      <option value="modelo">Modelo</option>
+      <option value="tipo">Tipo</option>
+      <option value="anio">Año</option>
+      <option value="kilometraje">Kilometraje</option>
+      <option value="precio_compra">Precio de Compra</option>
+      <option value="precio_venta">Precio de Venta</option>
+      <option value="estado">Estado</option>
+    </select>
+  <br>
+  <label for="parametro">Parámetro de búsqueda:</label>
+  <input type="text" id="parametro" name="parametro" required>
+  <br>
+  <input type="submit" value="Buscar">
 </form>
-<form action="http://127.0.0.1:5000/vehiculos" method="POST" action="request">
-    <button type="submit">{{lista_pre_buscar[4]}}</button>
-</form>
+</main>
 {% endblock %}

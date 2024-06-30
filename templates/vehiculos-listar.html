@@ -9,14 +9,8 @@ Listado de Vehículos
     <h1>{{lista_listar[0]}}</h1>
     <h2>{{lista_listar[1]}}</h2>
 </header>
-    <h3>{{lista_listar[2]}}</h3>
 <main>
-    <!DOCTYPE html>
-<html>
-<head>
-    <title>Vehículos</title>
-</head>
-<body>
+    <h3>{{lista_listar[2]}}</h3>
     <h1>Listado de Vehículos</h1>
     <table>
         <thead>
@@ -52,8 +46,6 @@ Listado de Vehículos
             {% endfor %}
         </tbody>
     </table>
-</body>
-</html>
     <form action="http://127.0.0.1:5000/vehiculos" method="POST" action="request">
         <button type="submit">{{lista_listar[4]}}</button>
     </form>
