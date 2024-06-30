@@ -1,0 +1,108 @@
+{% extends "base.html" %} {% block title %} Crear Vehículos {% endblock %} {% block 
+    content %}
+<header>
+  <h5 class="title">{{lista_crear[0]}}</h5>
+  <h6 class="title">{{lista_crear[1]}}</h6>
+</header>
+  <h6 class="title">{{lista_crear[2]}}</h6>
+  <p class="title">{{lista_crear[3]}}</p>
+<main>
+  
+  <nav id="d-grid col-9 mx-auto btn btn-outline-dark">
+    <form 
+      action="/submit-c-v"
+      method="POST"
+      onsubmit="alert('Cliente Creado Exitosamente');"
+    >
+      <label for="patente"></label>
+      <input
+        class="d-grid col-9 mx-auto btn btn-outline-dark"
+        placeholder="Ingresa la Patente"
+        type="text"
+        id="patente"
+        name="patente"
+      />
+      <label for="marca"></label>
+      <input
+        class="d-grid col-9 mx-auto btn btn-outline-dark"
+        placeholder="Ingresa la Marca"
+        type="text"
+        id="marca"
+        name="marca"
+      />
+      <label for="modelo"></label>
+      <input
+        class="d-grid col-9 mx-auto btn btn-outline-dark"
+        placeholder="Ingresa el Modelo"
+        type="text"
+        id="modelo"
+        name="modelo"
+      />
+      <label for="tipo"></label>
+      <input
+        class="d-grid col-9 mx-auto btn btn-outline-dark"
+        placeholder="Tipo de Vehículo"
+        type="text"
+        id="tipo"
+        name="tipo"
+      />
+      <label for="anio"></label>
+      <input
+        class="d-grid col-9 mx-auto btn btn-outline-dark"
+        placeholder="Ingresa el año: YYYY-MM-DD"
+        type="text"
+        id="anio"
+        name="anio"
+      />
+      <label for="kilometraje"></label>
+      <input
+        class="d-grid col-9 mx-auto btn btn-outline-dark"
+        placeholder="Ingresa el Kilometraje"
+        type="text"
+        id="kilometraje"
+        name="kilometraje"
+      />
+      <label for="precio_compra"></label>
+      <input
+        class="d-grid col-9 mx-auto btn btn-outline-dark"
+        placeholder="Precio de Compra en $"
+        type="text"
+        id="precio_compra"
+        name="precio_compra"
+      />
+      <label for="precio_venta"></label>
+      <input
+        class="d-grid col-9 mx-auto btn btn-outline-dark"
+        placeholder="Precio de Venta en $"
+        type="text"
+        id="precio_venta"
+        name="precio_venta"
+      />
+      <label for="estado"></label>
+      <input
+        class="d-grid col-9 mx-auto btn btn-outline-dark"
+        placeholder="Ingresa el Estado"
+        type="text"
+        id="estado"
+        name="estado"
+      />
+      <label for="submit"></label>
+      <input
+        class="d-grid col-9 mx-auto btn btn-outline-dark"
+        type="submit"
+        value="Crear Vehículo"
+        name="submit"
+      />
+    </form>
+    <form
+      action="http://127.0.0.1:5000/vehiculos"
+      method="POST"
+      action="request"
+    >
+      <button class="d-grid col-9 mx-auto btn btn-outline-dark" type="submit">
+        {{lista_crear[4]}}
+      </button>
+    </form>
+ </nav>
+</main>
+{% endblock %}

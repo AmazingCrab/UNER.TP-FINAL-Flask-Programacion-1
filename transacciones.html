@@ -1,0 +1,36 @@
+{% extends "base.html" %} {% block title %} Transacciones {% endblock %} {% block content %}
+
+<header>
+  <h5 class="title">{{lista_menu[6]}}</h5>
+  <h6 class="title">{{lista_menu[7]}}</h6>
+</header>
+<main>
+  <h6 class="title">{{lista_menu[4]}}</h6>
+  <nav>
+    <form action="http://127.0.0.1:5000/x" method="post" action="request">
+      <button class="d-grid col-10 mx-auto btn btn-outline-dark" type="submit">
+        {{lista_menu[0]}}
+      </button>
+    </form>
+    <form action="http://127.0.0.1:5000/x" method="post" action="request">
+      <button class="d-grid col-10 mx-auto btn btn-outline-dark" type="submit">
+        {{lista_menu[1]}}
+      </button>
+    </form>
+    <form action="http://127.0.0.1:5000/x" method="post" action="request">
+      <button class="d-grid col-10 mx-auto btn btn-outline-dark" type="submit">
+        {{lista_menu[2]}}
+      </button>
+    </form>
+    <form action="http://127.0.0.1:5000" method="post" action="request">
+      <button class="d-grid col-10 mx-auto btn btn-outline-dark" type="submit">
+        {{lista_menu[3]}}
+      </button>
+    </form>
+  </nav>
+</main>
+
+<table class="table table-dark table-striped">
+    ...
+</table>
+{% endblock%}
