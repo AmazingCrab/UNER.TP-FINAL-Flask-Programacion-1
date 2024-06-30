@@ -205,11 +205,10 @@ def vehiculos_editar_submit_form():
     if parametro.isdigit():
         parametro = int(parametro)
         editar_por = 'item_id'
-        auxiliar_var=1
     else:
         parametro = vehiculo_pre_editar
         editar_por = 'patente'
-        auxiliar_var=0
+
     diccionario_a_editar = None
 
     for registro in vehiculos:
@@ -308,6 +307,28 @@ def vehiculos_buscar_submit_form():
     with open('vehiculos.json', 'r') as file:
         vehiculos = json.load(file)
     #   cargamos los datos de json en memoria
+    form_data = request.form
+    parametro = vehiculo_pre_buscar
+    #cargamos la data del form
+    if parametro.isdigit():
+        parametro = int(parametro)
+        buscar_por = 'item_id'
+    else:
+        parametro = vehiculo_pre_buscar
+        buscar_por = 'patente'
+
+    diccionario_a_buscar = None
+
+    for vehiculo in vehiculos:
+        if vehiculo.get(buscar_por) == parametro:
+            diccionario_a_buscar = vehiculo
+            break
+
+    if not diccionario_a_buscar:
+        print("No se encontró el vehículo")
+        return redirect(url_for("vehiculos"))
+    
+    return render_template('vehiculos-buscar-submit-form.html', diccionario_a_buscar=diccionario_a_buscar)
     
 
 ################################################################################
