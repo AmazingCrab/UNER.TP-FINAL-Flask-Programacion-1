@@ -286,7 +286,7 @@ def vehiculos_listar():
     ]
 
     return render_template('vehiculos-listar.html', lista_listar=lista_listar, vehiculos= vehiculos)
-
+####################################################################
 @app.route('/vehiculos-pre-buscar/', methods=["GET", "POST"])
 def vehiculo_pre_buscar():
     lista_pre_buscar = [
@@ -300,43 +300,40 @@ def vehiculo_pre_buscar():
 
 @app.route("/vehiculos-pre-b-v", methods=["GET", "POST"])
 def vehiculos_pre_b_submit_form():
-    global vehiculo_pre_buscar
-
-    form_data = request.form
-    #   traemos los datos del formulario
-    parametro = form_data.get('parametro')
-    vehiculo_pre_buscar = parametro
-
-    return redirect(url_for('vehiculos_buscar'))
-
-@app.route('/vehiculos-buscar-submit-form', methods=["GET", "POST"])
-def vehiculos_buscar_submit_form(): 
     with open('vehiculos.json', 'r') as file:
         vehiculos = json.load(file)
-    #   cargamos los datos de json en memoria
-    form_data = request.form
-    parametro = vehiculo_pre_buscar
-    #cargamos la data del form
-    if parametro.isdigit():
-        parametro = int(parametro)
-        buscar_por = 'item_id'
-    else:
-        parametro = vehiculo_pre_buscar
-        buscar_por = 'patente'
+        #   cargamos los datos de json en memoria
 
-    diccionario_a_buscar = None
+    global dic_busqueda
+
+    form_data = request.form
+    parametro_vehiculo = form_data.get('parametro_vehiculo')
+    campo_vehiculo = form_data.get('campo_vehiculo')
 
     for vehiculo in vehiculos:
-        if vehiculo.get(buscar_por) == parametro:
-            diccionario_a_buscar = vehiculo
-            break
+        if vehiculo.get('campo_vehiculo') == parametro_vehiculo:
+            dic_busqueda = vehiculo
+            print(dic_busqueda)
 
-    if not diccionario_a_buscar:
-        print("No se encontró el vehículo")
-        return redirect(url_for("vehiculos"))
+    return redirect(url_for("vehiculos_buscar"))
+
+@app.route("/vehiculos-buscar", methods=["GET", "POST"])
+def vehiculos_buscar():
+   
+    dic_busqueda= vehiculos
+    #   cargamos los datos de json en memoria
     
-    return render_template('vehiculos-buscar-submit-form.html', diccionario_a_buscar=diccionario_a_buscar)
-    
+    lista_buscar = [
+        'Concesionario La Ñata',  # h1
+        'Bienvenido!',  # h2
+        'Listado de Vehículos',  # h3
+        'Volver a Vehículos',
+    ]
+
+    return render_template('vehiculos-buscar.html', lista_buscar=lista_buscar, vehiculos=vehiculos)
+
+
+
 
 ################################################################################
 ################################################################################

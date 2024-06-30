@@ -6,11 +6,11 @@ Listado de Vehículos
 
 {% block content %}
 <header>
-    <h1>{{lista_listar[0]}}</h1>
-    <h2>{{lista_listar[1]}}</h2>
+    <h1>{{ lista_listar[0] }}</h1>
+    <h2>{{ lista_listar[1] }}</h2>
 </header>
 <main>
-    <h3>{{lista_listar[2]}}</h3>
+    <h3>{{ lista_listar[2] }}</h3>
     <h1>Listado de Vehículos</h1>
     <table>
         <thead>
@@ -25,28 +25,24 @@ Listado de Vehículos
                 <th>Precio de Compra</th>
                 <th>Precio de Venta</th>
                 <th>Estado</th>
+                <th>Acciones</th>
             </tr>
         </thead>
         <tbody>
-            {% for vehiculo in vehiculos %}
+            {% for vehiculo in vehiculos.values() %}
             <tr>
-                <td>{{ vehiculo.item_id }}</td>
-                <td>{{ vehiculo.patente }}</td>
-                <td>{{ vehiculo.marca }}</td>
-                <td>{{ vehiculo.modelo }}</td>
-                <td>{{ vehiculo.tipo }}</td>
-                <td>{{ vehiculo.anio }}</td>
-                <td>{{ vehiculo.kilometraje }}</td>
-                <td>{{ vehiculo.precio_compra }}</td>
-                <td>{{ vehiculo.precio_venta }}</td>
-                <td>{{ vehiculo.estado }}</td>
+                {% for key, value in vehiculo.items() %}
+                {% if key != 'acciones' %}
+                <td>{{ value }}</td>
+                {% endif %}
+                {% endfor %}
                 <td><a href="http://127.0.0.1:5000/vehiculos-pre-editar">Editar</a></td>
             </tr>
             {% endfor %}
         </tbody>
     </table>
-    <form action="http://127.0.0.1:5000/vehiculos" method="POST" action="request">
-        <button type="submit">{{lista_listar[4]}}</button>
+    <form action="http://127.0.0.1:5000/vehiculos" method="POST">
+        <button type="submit">{{ lista_listar[4] }}</button>
     </form>
 </main>
-{% endblock%}
+{% endblock %}

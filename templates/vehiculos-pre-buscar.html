@@ -29,6 +29,15 @@ Buscador de Vehículos
   <label for="parametro">Parámetro de búsqueda:</label>
   <input type="text" id="parametro" name="parametro" required>
   <br>
+  {% with messages = get_flashed_messages() %}
+  {% if messages %}
+      <ul class="flashes">
+          {% for message in messages %}
+              <li>{{ message }}</li>
+          {% endfor %}
+      </ul>
+  {% endif %}
+{% endwith %}    
   <input type="submit" value="Buscar">
 </form>
 </main>
