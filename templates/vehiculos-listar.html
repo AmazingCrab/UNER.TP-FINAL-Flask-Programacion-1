@@ -42,7 +42,13 @@ Listado de Vehículos
                 <td>{{ vehiculo.patente }}</td>
                 <td>{{ vehiculo.marca }}</td>
                 <td>{{ vehiculo.modelo }}</td>
-                <!-- Add more table data as needed -->
+                <td>{{ vehiculo.tipo }}</td>
+                <td>{{ vehiculo.anio }}</td>
+                <td>{{ vehiculo.kilometraje }}</td>
+                <td>{{ vehiculo.precio_compra }}</td>
+                <td>{{ vehiculo.precio_venta }}</td>
+                <td>{{ vehiculo.estado }}</td>
+                <td><a href="http://127.0.0.1:5000/vehiculos-pre-editar">Editar</a></td>
             </tr>
             {% endfor %}
         </tbody>
