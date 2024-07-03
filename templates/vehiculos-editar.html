@@ -6,36 +6,38 @@ Editar Vehículos
 
 {% block content %}
 <header>
-    <h1>{{lista_editar[0]}}</h1>
-    <h2>{{lista_editar[1]}}</h2>
+    <h1 class="title">{{lista_editar[0]}}</h1>
+    <h2 class="title">{{lista_editar[1]}}</h2>
 </header>
-    <h3>{{lista_editar[2]}}</h3>
+    <h3 class="title">{{lista_editar[2]}}</h3>
 <main>
-    <h4>{{lista_editar[3]}}</h4>
+    <h4 class="title">{{lista_editar[3]}}</h4>
+<nav id="d-grid col-6 mx-auto btn btn-outline-dark">
     <form action="/submit-e-v" method="POST" onsubmit="alert('Vehículo Editado Exitosamente');">
         <label for="patente"></label><br>
-        <input placeholder = "Ingresa la Patente" type="text" id="patente" name="patente"><br>
+        <input class="d-grid col-6 mx-auto btn btn-outline-dark" placeholder = "Ingresa la Patente" type="text" id="patente" name="patente"><br>
         <label for="marca"></label><br>
-        <input placeholder ="Ingresa la Marca" type="text" id="marca" name="marca"><br>
+        <input class="d-grid col-6 mx-auto btn btn-outline-dark" placeholder ="Ingresa la Marca" type="text" id="marca" name="marca"><br>
         <label for="modelo"></label><br>
-        <input placeholder="Ingresa el Modelo" type="text" id="modelo" name="modelo"><br>
+        <input class="d-grid col-6 mx-auto btn btn-outline-dark" placeholder="Ingresa el Modelo" type="text" id="modelo" name="modelo"><br>
         <label for="tipo"></label><br>
-        <input placeholder ="Tipo de Vevhículo" type="text" id="tipo" name="tipo"><br>
+        <input class="d-grid col-6 mx-auto btn btn-outline-dark" placeholder ="Tipo de Vevhículo" type="text" id="tipo" name="tipo"><br>
         <label for="anio"></label><br>
-        <input placeholder ="Ingresa el año Formato YYYY-MM-DD" type="text" id="anio" name="anio"><br>
+        <input class="d-grid col-6 mx-auto btn btn-outline-dark" placeholder ="Ingresa el año Formato YYYY-MM-DD" type="text" id="anio" name="anio"><br>
         <label for="kilometraje"></label><br>
-        <input placeholder ="Ingresa el Kilometraje" type="text" id="kilometraje" name="kilometraje"><br>
+        <input class="d-grid col-6 mx-auto btn btn-outline-dark" placeholder ="Ingresa el Kilometraje" type="text" id="kilometraje" name="kilometraje"><br>
         <label for="precio_compra"></label>
-        <input placeholder =" Precio de Compra en $" type="text" id="precio_compra" name="precio_compra"><br>
+        <input class="d-grid col-6 mx-auto btn btn-outline-dark" placeholder =" Precio de Compra en $" type="text" id="precio_compra" name="precio_compra"><br>
         <label for="precio_venta"></label>
-        <input placeholder ="Precio de Venta en $" type="text" id="precio_venta" name="precio_venta"><br>
+        <input class="d-grid col-6 mx-auto btn btn-outline-dark" placeholder ="Precio de Venta en $" type="text" id="precio_venta" name="precio_venta"><br>
         <label for="estado"></label><br>
-        <input placeholder ="Ingresa el Estado" type="text" id="estado" name="estado"><br>
+        <input class="d-grid col-6 mx-auto btn btn-outline-dark" placeholder ="Ingresa el Estado" type="text" id="estado" name="estado"><br>
         <label for="submit"></label><br>
-        <input type="submit" value="Editar Vehículo" name="submit"><br>
+        <input class="d-grid col-6 mx-auto btn btn-outline-dark" type="submit" value="Editar Vehículo" name="submit"><br>
     </form>
+</nav>
     <form action="http://127.0.0.1:5000/vehiculos" method="POST" action="request">
-        <button type="submit">{{lista_editar[4]}}</button>
+        <button class="d-grid col-6 mx-auto btn btn-outline-dark" type="submit">{{lista_editar[4]}}</button>
     </form>
 
 

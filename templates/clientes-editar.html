@@ -6,27 +6,27 @@ Editar Clientes
 
 {% block content %}
 <header>
-    <h1>{{lista_editar[0]}}</h1>
-    <h2>{{lista_editar[1]}}</h2>
+    <h1 class="title">{{lista_editar[0]}}</h1>
+    <h2 class="title">{{lista_editar[1]}}</h2>
 </header>
-    <h3>{{lista_editar[2]}}</h3>
-    <h4>{{lista_editar[3]}}</h4>
+    <h3 class="title">{{lista_editar[2]}}</h3>
+    <h4 class="title">{{lista_editar[3]}}</h4>
 
     <form action="/submit-e-c" method="POST">
-        <label for="nombre"></label><br>
-        <input placeholder = "Ingresa el nombre" type="text" id="nombre" name="nombre"><br>
-        <label for="apellido"></label><br>
-        <input placeholder="Ingresa el apellido" type="text" id="aellido" name="apellido"><br>
-        <label for="documento"></label><br>
-        <input placeholder ="Ingresa el documento" type="text" id="documento" name="documento"><br>
-        <label for="direccion"></label><br>
-        <input placeholder ="Ingresa la direccion" type="text" id="direccion" name="direccion"><br>
-        <label for="telefono"></label><br>
-        <input placeholder ="Ingresa el telefóno" type="text" id="telefono" name="telefono"><br>
-        <label for="correo_electronico"></label><br>
-        <input placeholder ="Ingresa el email" type="text" id="correo_electronico" name="correo_electronico"><br>
+        <label for="nombre"></label>
+        <input placeholder = "Ingresa el nombre" type="text" id="nombre" name="nombre">
+        <label for="apellido"></label>
+        <input placeholder="Ingresa el apellido" type="text" id="aellido" name="apellido">
+        <label for="documento"></label>
+        <input placeholder ="Ingresa el documento" type="text" id="documento" name="documento">
+        <label for="direccion"></label>
+        <input placeholder ="Ingresa la direccion" type="text" id="direccion" name="direccion">
+        <label for="telefono"></label>
+        <input placeholder ="Ingresa el telefóno" type="text" id="telefono" name="telefono">
+        <label for="correo_electronico"></label>
+        <input placeholder ="Ingresa el email" type="text" id="correo_electronico" name="correo_electronico">
         <label for="submit"></label><br>
-        <input type="submit" value="Editar Cliente" name="submit"><br>
+        <input type="submit" value="Editar Cliente" name="submit">
         {% with messages = get_flashed_messages() %}
         {% if messages %}
             <ul class="flashes">

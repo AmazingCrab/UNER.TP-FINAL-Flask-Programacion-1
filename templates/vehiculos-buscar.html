@@ -6,14 +6,14 @@ Buscador de Vehículos
 
 {% block content %}
 <header>
-    <h1>{{lista_buscar[0]}}</h1>
-    <h2>{{lista_buscar[1]}}</h2>
+    <h1 class="title">{{lista_buscar[0]}}</h1>
+    <h2 class="title">{{lista_buscar[1]}}</h2>
 </header>
 <main>
-    <h3>{{lista_buscar[2]}}</h3>
-    <h4>{{vehiculo_pre_buscar[1]}}</h4>
-    <h1>Listado de Vehículos</h1>
-    <table>
+    <h3 class="title">{{lista_buscar[2]}}</h3>
+    <h4 class="title">{{vehiculo_pre_buscar[1]}}</h4>
+    <h1 class="title">Listado de Vehículos</h1>
+    <tableclass="table table-dark table-striped-columns"  border="1" >
         <thead>
             <tr>
                 <th>ID</th>
@@ -49,7 +49,7 @@ Buscador de Vehículos
     </table>
 
     <form action="http://127.0.0.1:5000/vehiculos" method="POST" action="request">
-        <button type="submit">{{lista_buscar[4]}}</button>
+        <button class="d-grid col-4 mx-auto btn btn-outline-dark" type="submit">{{lista_buscar[4]}}</button>
     </form>
 </main>
 {% endblock%}

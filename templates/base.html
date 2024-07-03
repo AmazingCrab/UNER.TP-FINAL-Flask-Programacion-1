@@ -5,8 +5,90 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <style>
+        @font-face {
+            font-family: "MendIserif";
+            src: url("https://assets.codepen.io/527512/MendlSerifVF.ttf");
+          }
+          
+          .title {
+            cursor: pointer;
+            font-family: "MendIserif", sans-serif;
+            font-size: 5vw;
+            text-align: center;
+            color: black;
+            font-variation-settings: "wght" 100;
+            transition: all 1.5s;
+          }
+          .title:hover {
+            font-variation-settings: "wght" 900;
+          }
+    
+    
+    
+        :root {
+            --primary: #2E2300;
+            --gradient1: #6E6702;
+            --gradient2: #C05805;
+        }
+        
+        body {
+            box-sizing: border-box;
+            min-height: 100vh;
+            width: 100vw;
+            display: flex;
+            align-content: center;
+            justify-content: center;
+            align-items: center;
+            background: radial-gradient(
+                ellipse at bottom,
+                var(--gradient1) 0%,
+                var(--gradient2) 100%
+            );
+        }
+        
+        span {
+            --minFontSize: 2rem;
+            --maxFontSize: calc(var(--minFontSize) * 8);
+            --scaler: 20vw;
+            font-family: "Moderat", sans-serif;
+            font-weight: 900;
+            font-size: clamp(var(--minFontSize), var(--scaler), var(--maxFontSize));
+            color: var(--primary);
+            background: url("https://mereton.com.au/wp-content/uploads/2016/12/Daisy-Leaf-Marine.jpg");
+            filter: drop-shadow(0.75rem 0 0.75rem black);
+            background-size: auto 200%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: carmen 8s linear infinite;
+        
+            @keyframes carmen {
+                0% {
+                    background-position: center 0;
+                }
+                100% {
+                    background-position: center 200%;
+                }
+            }
+        }
+    
+        text-md {
+            font-size: 1.25rem !important;
+          }
+        
+        form {
+            padding: 10px;
+            border-radius: 10px;
+        }
+        
+        texto {
+            color: black;
+            text-align: center;
+        }
+        
+    </style>
 
-    <title> {% block title %}titulo de la pagina{% endblock %}</title>
+    <title class="title"> {% block title %}titulo de la pagina{% endblock %}</title>
 </head>
 {% endblock %}
 <body>
@@ -14,7 +96,7 @@
 
     <div id="footer">
         {% block footer %}
-        &copy; Copyright 2010 by <a href="http://domain.invalid/">you</a>.
+        &copy; Copyright 2024 by <a href="http://domain.invalid/">you</a>.
         {% endblock %}
       </div>
 </body>

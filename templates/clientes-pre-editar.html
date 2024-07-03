@@ -7,14 +7,14 @@ Editar Clientes
 
 {% block content %}
 <header>
-    <h1>{{lista_pre_editar[0]}}</h1>
-    <h2>{{lista_pre_editar[1]}}</h2>
+    <h1 class="title">{{lista_pre_editar[0]}}</h1>
+    <h2 class="title">{{lista_pre_editar[1]}}</h2>
 </header>
-<h3>{{lista_pre_editar[2]}}</h3>
-<h4>{{lista_pre_editar[3]}}</h4>
+<h3 class="title">{{lista_pre_editar[2]}}</h3>
+<h4 class="title">{{lista_pre_editar[3]}}</h4>
 <form action="/submit-pre-e-c" method="POST">
         <label for="parametro"></label><br>
-        <input placeholder = "Ingresa ID de cliente o DNI" type="text" id="parametro" name="parametro"><br>
+        <input class="d-grid col-10 mx-auto btn btn-outline-dark" placeholder = "Ingresa ID de cliente o DNI" type="text" id="parametro" name="parametro"><br>
         {% with messages = get_flashed_messages() %}
         {% if messages %}
             <ul class="flashes">
@@ -27,6 +27,6 @@ Editar Clientes
 </form>
 <form action="http://127.0.0.1:5000/clientes" method="POST" action="request">
 
-    <button type="submit">{{lista_pre_editar[4]}}</button>
+    <button class="d-grid col-10 mx-auto btn btn-outline-dark" type="submit">{{lista_pre_editar[4]}}</button>
 </form>
 {% endblock %}

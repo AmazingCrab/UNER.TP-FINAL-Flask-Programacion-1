@@ -12,21 +12,21 @@ Crear Vehículos
     <h3>{{lista_crear[2]}}</h3>
 <main>
     <h4>{{lista_crear[3]}}</h4>
-    <form action="submit-c-t " method="POST="POST" onsubmit="alert('Transacción Creada Exitosamente');">
+    <form action="submit-c-t " method="POST">
         <label for="id_vehiculo"></label><br>
-        <input placeholder = "Ingresa el ID del Vehículo" type="text" id="id_vehiculo" name="id_vehiculo"><br>
+        <input class="d-grid col-10 mx-auto btn btn-outline-dark" type="date" placeholder = "Ingresa el ID del Vehículo" type="text" id="id_vehiculo" name="id_vehiculo"><br>
         <label for="id_cliente"></label><br>
-        <input placeholder ="Ingresa el ID del Cliente" type="text" id="id_cliente" name="id_cliente"><br>
+        <input class="d-grid col-10 mx-auto btn btn-outline-dark" type="date" placeholder ="Ingresa el ID del Cliente" type="text" id="id_cliente" name="id_cliente"><br>
         <label for="tipo_transaccion"></label><br>
-        <input placeholder ="Tipo de Transacción" type="text" id="tipo_transaccion" name="tipo_transaccion"><br>
+        <input class="d-grid col-10 mx-auto btn btn-outline-dark" type="date" placeholder ="Tipo de Transacción" type="text" id="tipo_transaccion" name="tipo_transaccion"><br>
         <label for="fecha"></label><br>
-        <input placeholder="Ingresa la Fecha Formato YYYY-MM-DD" type="text" id="fecha" name="fecha"><br>
+        <input class="d-grid col-10 mx-auto btn btn-outline-dark" type="date" placeholder="Ingresa la Fecha Formato YYYY-MM-DD" type="text" id="fecha" name="fecha"><br>
         <label for="montho"></label><br>
-        <input placeholder ="Ingresa el Monto" type="text" id="monto" name="monto"><br>
+        <input class="d-grid col-10 mx-auto btn btn-outline-dark" type="date" placeholder ="Ingresa el Monto" type="text" id="monto" name="monto"><br>
         <label for ="observaciones"></label>
-        <input placeholder ="Ingresa las Observaciones" type="text" id="observaciones" name="observaciones"><br>
+        <input class="d-grid col-10 mx-auto btn btn-outline-dark" type="date" placeholder ="Ingresa las Observaciones" type="text" id="observaciones" name="observaciones"><br>
         <label for="submit"></label><br>
-        <input type="submit" value="Crear Transacción" name="submit"><br>
+        <input class="d-grid col-10 mx-auto btn btn-outline-dark" type="date" type="submit" value="Crear Transacción" name="submit"><br>
     </form>
     {% with messages = get_flashed_messages() %}
     {% if messages %}
@@ -38,7 +38,7 @@ Crear Vehículos
     {% endif %}
 {% endwith %}
     <form action="http://127.0.0.1:5000/transacciones" method="POST" action="request">
-        <button type="submit">{{lista_crear[4]}}</button>
+        <button class="d-grid col-10 mx-auto btn btn-outline-dark" type="date" type="submit">{{lista_crear[4]}}</button>
     </form>  
 </main>
 {% endblock %}

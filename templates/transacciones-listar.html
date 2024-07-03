@@ -6,13 +6,13 @@ Listado de Transacciones
 
 {% block content %}
 <header>
-    <h1>{{ lista_listar[0] }}</h1>
-    <h2>{{ lista_listar[1] }}</h2>
+    <h1 class="title">{{ lista_listar[0] }}</h1>
+    <h2 class="title">{{ lista_listar[1] }}</h2>
 </header>
-<h3>{{ lista_listar[2] }}</h3>
+<h3 class="title">{{ lista_listar[2] }}</h3>
 <main>
-    <h1>Listado de Transacciones</h1>
-    <table border="1">
+    <h1 class="title">Listado de Transacciones</h1>
+    <table class="table table-dark table-striped-columns" border="1">
     <thead> 
         <tr>
             <th>ID Transacción</th>
@@ -39,7 +39,7 @@ Listado de Transacciones
     </tbody>
     </table>
     <form action="http://127.0.0.1:5000/transacciones" method="POST">
-        <button type="submit">{{ lista_listar[3] }}</button>
+        <button class="d-grid col-4 mx-auto btn btn-outline-dark" type="submit">{{ lista_listar[3] }}</button>
     </form>
 </main>
 {% endblock %}
