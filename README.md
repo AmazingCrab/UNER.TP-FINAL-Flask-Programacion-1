@@ -1,3 +1,5 @@
+## Este proyecto fue realizado en consola y en flask al 95% esta es la versión en flask.
+
 # Aplicación Flask - Concesionario La Ñata
 
 Esta es una sencilla aplicación Flask para un concesionario de automóviles llamado "Concesionario La Ñata".
