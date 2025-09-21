@@ -1,4 +1,4 @@
-## Este proyecto fue realizado en consola y en flask al 95% esta es la versión en flask.
+## Este proyecto fue realizado en consola al 100% y luego se realizo esta versión en flask que es funcional al 95% aproximadamente.
 
 # Aplicación Flask - Concesionario La Ñata
 
